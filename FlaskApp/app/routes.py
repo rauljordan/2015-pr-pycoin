@@ -4,15 +4,6 @@ import filters
 
 
 
-################# DATA MINER ####################
-#                                               #
-#      Makes a dataminer for government data    #
-#      that outputs useful CSV files for easy   #
-#      data manipulation                        #
-#################################################   
-
-
-
 app = Flask(__name__, static_url_path='')
 
 # creates a dictionary to store request objects
