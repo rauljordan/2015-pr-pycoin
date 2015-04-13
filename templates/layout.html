@@ -4,10 +4,12 @@
    
    <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="{{url_for('static', filename='materialize.css')}}">
-  <link rel="icon" 
-     
-      href="{{url_for('static', filename='coin.ico')}}" />
-  	
+  <link rel="icon" href="{{url_for('static', filename='coin.ico')}}" />
+  <!-- Compiled and minified JavaScript -->
+  <script src="{{url_for('static', filename='jquery-2.1.3.min.js')}}"></script>
+  <script src="{{url_for('static', filename='materialize.js')}}"></script>
+  <script src="{{url_for('static', filename='d3.min.js')}}"></script>
+
     <title>Pycoin</title>    
   </head>
   <body>
@@ -52,14 +54,11 @@
           </div>
         </footer>
 	  
-  <!-- Compiled and minified JavaScript -->
-  <script src="{{url_for('static', filename='jquery-2.1.3.min.js')}}"></script>
-  <script src="{{url_for('static', filename='materialize.js')}}"></script>
+  
   <script type="text/javascript">
-	  	$(document).ready(function(){
-	      $('.slider').slider({height:500, indicators:false});
-	    });
-	        
+        $(document).ready(function(){
+          $('.slider').slider({height:500, indicators:false});
+        });
   </script>
   </body>
 
