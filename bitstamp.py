@@ -35,6 +35,7 @@ class Bitstamp(Formatter):
 		r = requests.get("https://www.bitstamp.net/api/transactions/", data=payload)
 		self.data = r.json()
 
+	# writes the bitcoin JSON data into a dump file
 	def write_to_file(self):
 		with open('data/bitstamp.json', 'w') as f:
 			json.dump(self.data, f, sort_keys=False,
