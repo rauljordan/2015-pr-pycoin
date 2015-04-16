@@ -2,3 +2,54 @@
 .area {
 	fill: #ffab00;
 }
+
+.link {
+  stroke: #008894;
+  stroke-width: 1px;
+}
+
+.node {
+  fill: #ffab00;
+  stroke: #008894;
+  stroke-width: .9px;
+}
+
+.node:hover {
+  fill: black;
+}
+
+.node:hover,
+.node--source,
+.node--target {
+  font-weight: 700;
+}
+
+.not--selected {
+  opacity:.1;
+}
+
+.selected {
+  opacity:1;
+}
+
+.node--source {
+  fill: #2ca02c;
+}
+
+.node--target {
+  fill: #d62728;
+}
+
+.link--source,
+.link--target {
+  stroke-opacity: 1;
+  stroke-width: 2px;
+}
+
+.link--source {
+  stroke: #d62728;
+}
+
+.link--target {
+  stroke: #2ca02c;
+}

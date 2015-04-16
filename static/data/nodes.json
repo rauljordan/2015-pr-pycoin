@@ -1,0 +1,1418 @@
+{
+    "AXR": [
+        "BTC"
+    ],
+    "ALF": [
+        "BTC"
+    ],
+    "NYAN": [
+        "LTC",
+        "BTC"
+    ],
+    "EXE": [
+        "XRP",
+        "BTC"
+    ],
+    "WC": [
+        "XRP",
+        "BTC"
+    ],
+    "CKC": [
+        "XRP",
+        "BTC"
+    ],
+    "MIN": [
+        "BTC"
+    ],
+    "CANN": [
+        "XRP",
+        "BTC"
+    ],
+    "XJO": [
+        "BTC"
+    ],
+    "NAN": [
+        "BTC"
+    ],
+    "RYC": [
+        "BTC"
+    ],
+    "XBS": [
+        "BTC"
+    ],
+    "WDC": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "NAV": [
+        "XRP",
+        "BTC"
+    ],
+    "TIX": [
+        "LTC"
+    ],
+    "CPR": [
+        "LTC"
+    ],
+    "AGS": [
+        "BTC"
+    ],
+    "SHLD": [
+        "BTC"
+    ],
+    "SXC": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "MONA": [
+        "BTC"
+    ],
+    "APEX": [
+        "XRP",
+        "BTC"
+    ],
+    "OPAL": [
+        "XRP",
+        "BTC"
+    ],
+    "MYR": [
+        "XRP",
+        "BTC"
+    ],
+    "SPT": [
+        "BTC"
+    ],
+    "CENT": [
+        "XRP"
+    ],
+    "TIT": [
+        "BTC"
+    ],
+    "TAG": [
+        "XRP",
+        "BTC"
+    ],
+    "DRKC": [
+        "XRP",
+        "BTC"
+    ],
+    "YAC": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "LYC": [
+        "BTC"
+    ],
+    "SPA": [
+        "XRP",
+        "BTC"
+    ],
+    "EUR": [
+        "USD",
+        "BTC"
+    ],
+    "IOC": [
+        "XRP",
+        "BTC"
+    ],
+    "TAK": [
+        "BTC"
+    ],
+    "NXT": [
+        "LTC",
+        "USD",
+        "XRP",
+        "BTC"
+    ],
+    "PTS": [
+        "XRP",
+        "BTC"
+    ],
+    "HAL": [
+        "XRP",
+        "BTC"
+    ],
+    "BQC": [
+        "BTC"
+    ],
+    "XPM": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "BOST": [
+        "BTC"
+    ],
+    "IXC": [
+        "XRP",
+        "BTC"
+    ],
+    "URO": [
+        "XRP",
+        "BTC"
+    ],
+    "MST": [
+        "LTC"
+    ],
+    "NOBL": [
+        "BTC"
+    ],
+    "DASH": [
+        "LTC",
+        "USD",
+        "XRP",
+        "BTC"
+    ],
+    "XAI": [
+        "BTC"
+    ],
+    "XPY": [
+        "USD",
+        "BTC"
+    ],
+    "GB": [
+        "XRP",
+        "BTC"
+    ],
+    "BTCD": [
+        "XRP",
+        "BTC"
+    ],
+    "CINNI": [
+        "BTC"
+    ],
+    "GLX": [
+        "BTC"
+    ],
+    "VIA": [
+        "XRP",
+        "BTC"
+    ],
+    "DBL": [
+        "LTC"
+    ],
+    "ZEIT": [
+        "LTC",
+        "XRP"
+    ],
+    "CRAIG": [
+        "XRP",
+        "BTC"
+    ],
+    "SFR": [
+        "XRP",
+        "BTC"
+    ],
+    "LAB": [
+        "BTC"
+    ],
+    "SYS": [
+        "XRP",
+        "BTC"
+    ],
+    "CLOAK": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "CCN": [
+        "BTC"
+    ],
+    "LXC": [
+        "XRP",
+        "BTC"
+    ],
+    "MZC": [
+        "XRP",
+        "BTC"
+    ],
+    "JUDGE": [
+        "XRP",
+        "BTC"
+    ],
+    "FST": [
+        "LTC",
+        "BTC"
+    ],
+    "CNC": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "PYC": [
+        "BTC"
+    ],
+    "FFC": [
+        "XRP",
+        "BTC"
+    ],
+    "EMD": [
+        "BTC"
+    ],
+    "DMC": [
+        "LTC"
+    ],
+    "DMD": [
+        "XRP",
+        "BTC"
+    ],
+    "XST": [
+        "XRP",
+        "BTC"
+    ],
+    "CMC": [
+        "BTC"
+    ],
+    "SYNC": [
+        "BTC"
+    ],
+    "CAIx": [
+        "BTC"
+    ],
+    "CRC": [
+        "BTC"
+    ],
+    "DEM": [
+        "XRP",
+        "BTC"
+    ],
+    "FLO": [
+        "LTC",
+        "XRP"
+    ],
+    "LKY": [
+        "XRP",
+        "BTC"
+    ],
+    "YBC": [
+        "BTC"
+    ],
+    "BET": [
+        "BTC"
+    ],
+    "LSD": [
+        "XRP",
+        "BTC"
+    ],
+    "XLB": [
+        "BTC"
+    ],
+    "ACOIN": [
+        "BTC"
+    ],
+    "VTC": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "AMC": [
+        "BTC"
+    ],
+    "BUK": [
+        "BTC"
+    ],
+    "PSEUD": [
+        "BTC"
+    ],
+    "TTC": [
+        "BTC"
+    ],
+    "OSC": [
+        "XRP",
+        "BTC"
+    ],
+    "MNC": [
+        "XRP",
+        "BTC"
+    ],
+    "SWIFT": [
+        "BTC"
+    ],
+    "MNE": [
+        "BTC"
+    ],
+    "FIBRE": [
+        "XRP",
+        "BTC"
+    ],
+    "FLAP": [
+        "LTC",
+        "XRP"
+    ],
+    "BLU": [
+        "XRP",
+        "BTC"
+    ],
+    "MN1": [
+        "BTC"
+    ],
+    "MN2": [
+        "BTC"
+    ],
+    "SOLE": [
+        "BTC"
+    ],
+    "DOGED": [
+        "BTC"
+    ],
+    "CSC": [
+        "BTC"
+    ],
+    "VRC": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "HBN": [
+        "XRP",
+        "BTC"
+    ],
+    "PHS": [
+        "XRP",
+        "BTC"
+    ],
+    "FTC": [
+        "LTC",
+        "USD",
+        "XRP",
+        "BTC"
+    ],
+    "XBOT": [
+        "XRP",
+        "BTC"
+    ],
+    "EFL": [
+        "BTC"
+    ],
+    "SHADE": [
+        "XRP",
+        "BTC"
+    ],
+    "CRACK": [
+        "XRP",
+        "BTC"
+    ],
+    "DSB": [
+        "BTC"
+    ],
+    "XRP": [
+        "EXE",
+        "WC",
+        "CKC",
+        "CANN",
+        "WDC",
+        "NAV",
+        "SXC",
+        "APEX",
+        "OPAL",
+        "MYR",
+        "CENT",
+        "TAG",
+        "DRKC",
+        "YAC",
+        "SPA",
+        "IOC",
+        "NXT",
+        "HAL",
+        "MRY",
+        "XPM",
+        "CRAIG",
+        "IXC",
+        "URO",
+        "DASH",
+        "GB",
+        "BTCD",
+        "VIA",
+        "ZEIT",
+        "MAX",
+        "SFR",
+        "SYS",
+        "LXC",
+        "MZC",
+        "JUDGE",
+        "CNC",
+        "FFC",
+        "ARG",
+        "DMD",
+        "XST",
+        "CLOAK",
+        "DEM",
+        "FLO",
+        "LKY",
+        "LSD",
+        "HUC",
+        "OSC",
+        "MNC",
+        "PTS",
+        "FIBRE",
+        "FLAP",
+        "BLU",
+        "TRC",
+        "HBN",
+        "PHS",
+        "FTC",
+        "XBOT",
+        "SHADE",
+        "CRACK",
+        "USDe",
+        "LEAF",
+        "ANC",
+        "DOGE",
+        "MOON",
+        "XCR",
+        "MEOW",
+        "BTG",
+        "NVC",
+        "BTC",
+        "BTB",
+        "BTM",
+        "EMC2",
+        "CBX",
+        "HTML5",
+        "BLK",
+        "CRYPT",
+        "GLD",
+        "NEC",
+        "DVC",
+        "NET",
+        "SILK",
+        "COL",
+        "DGB",
+        "DGC",
+        "TEK",
+        "VRC",
+        "ZET",
+        "TES",
+        "FRC",
+        "SRC",
+        "VTC",
+        "FRK",
+        "XC",
+        "FLT",
+        "LTC",
+        "RDD",
+        "UNB",
+        "AUR",
+        "MINT",
+        "CLR",
+        "UNO",
+        "ALN",
+        "MEC",
+        "HVC",
+        "NAUT",
+        "NMB",
+        "NMC",
+        "KEY",
+        "ORB",
+        "XXX",
+        "GLYPH",
+        "USD",
+        "CAP",
+        "IFC",
+        "LOT",
+        "DT",
+        "KARM",
+        "PPC",
+        "SSV",
+        "POT",
+        "QRK",
+        "42",
+        "PXC",
+        "TIPS",
+        "UTC",
+        "AC",
+        "ICB",
+        "AERO",
+        "RZR",
+        "LTCD",
+        "SLG",
+        "LTB",
+        "SDC",
+        "SUPER",
+        "EAC"
+    ],
+    "COOL": [
+        "BTC"
+    ],
+    "ULTC": [
+        "BTC"
+    ],
+    "USDe": [
+        "XRP",
+        "BTC"
+    ],
+    "LEAF": [
+        "LTC",
+        "XRP"
+    ],
+    "LTCX": [
+        "LTC",
+        "BTC"
+    ],
+    "ANC": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "VOOT": [
+        "BTC"
+    ],
+    "MYST": [
+        "BTC"
+    ],
+    "MOON": [
+        "LTC",
+        "XRP"
+    ],
+    "XCR": [
+        "XRP",
+        "BTC"
+    ],
+    "MEOW": [
+        "LTC",
+        "XRP"
+    ],
+    "BTG": [
+        "XRP",
+        "BTC"
+    ],
+    "NVC": [
+        "XRP",
+        "BTC"
+    ],
+    "BTC": [
+        "AXR",
+        "NYAN",
+        "EXE",
+        "WC",
+        "CKC",
+        "MIN",
+        "CANN",
+        "XJO",
+        "NAN",
+        "RYC",
+        "XBS",
+        "HBN",
+        "NAV",
+        "AGS",
+        "SHLD",
+        "XBOT",
+        "MONA",
+        "APEX",
+        "OPAL",
+        "MYR",
+        "SPT",
+        "MRY",
+        "TIT",
+        "TAG",
+        "DRKC",
+        "YAC",
+        "LYC",
+        "SPA",
+        "UNO",
+        "IOC",
+        "TAK",
+        "NXT",
+        "PTS",
+        "HAL",
+        "BQC",
+        "XPM",
+        "BOST",
+        "IXC",
+        "URO",
+        "NOBL",
+        "DASH",
+        "XAI",
+        "XPY",
+        "GB",
+        "TEK",
+        "BTCD",
+        "CINNI",
+        "UTIL",
+        "VIA",
+        "MEC",
+        "SDC",
+        "MAX",
+        "SFR",
+        "LAB",
+        "MNE",
+        "SYS",
+        "CCN",
+        "LXC",
+        "CRAIG",
+        "JUDGE",
+        "FST",
+        "PYC",
+        "FFC",
+        "LKY",
+        "EMD",
+        "BEN",
+        "XST",
+        "CMC",
+        "SYNC",
+        "CAIx",
+        "CRC",
+        "DEM",
+        "IFC",
+        "GLC",
+        "YBC",
+        "BET",
+        "LSD",
+        "ACOIN",
+        "AMC",
+        "BUK",
+        "PSEUD",
+        "TTC",
+        "OSC",
+        "MNC",
+        "SWIFT",
+        "MN2",
+        "FIBRE",
+        "SOLE",
+        "ZET",
+        "BLU",
+        "MN1",
+        "TRC",
+        "MZC",
+        "DOGED",
+        "CSC",
+        "PHS",
+        "FTC",
+        "SXC",
+        "EFL",
+        "SHADE",
+        "CRACK",
+        "DSB",
+        "XRP",
+        "COOL",
+        "ULTC",
+        "USDe",
+        "LTCX",
+        "ANC",
+        "VOOT",
+        "MYST",
+        "XCR",
+        "BTG",
+        "NVC",
+        "BTB",
+        "BTM",
+        "LTCD",
+        "CBX",
+        "RDD",
+        "RZR",
+        "FLT",
+        "JBS",
+        "BLK",
+        "CRYPT",
+        "RT2",
+        "GLD",
+        "NEC",
+        "DVC",
+        "BITB",
+        "GLX",
+        "USD",
+        "BCX",
+        "DMD",
+        "NET",
+        "SILK",
+        "SMC",
+        "CNL",
+        "DGB",
+        "DGC",
+        "CLAM",
+        "GUE",
+        "CASH",
+        "KDC",
+        "VRC",
+        "WDC",
+        "MN",
+        "NBL",
+        "TES",
+        "QRK",
+        "JKC",
+        "CLOAK",
+        "SRC",
+        "FC2",
+        "GML",
+        "FRK",
+        "XC",
+        "XLB",
+        "LTC",
+        "LTB",
+        "UNB",
+        "Points",
+        "COMM",
+        "MINT",
+        "CLR",
+        "EUR",
+        "ALN",
+        "MED",
+        "ZED",
+        "DOGE",
+        "ALF",
+        "HVC",
+        "NAUT",
+        "CIN",
+        "SBC",
+        "CRAVE",
+        "GDC",
+        "NMB",
+        "NMC",
+        "KEY",
+        "ORB",
+        "GLYPH",
+        "FRC",
+        "SAT2",
+        "SSV",
+        "BNCR",
+        "TOR",
+        "CAP",
+        "RIPO",
+        "VTC",
+        "CAT",
+        "HYP",
+        "WBB",
+        "FRAC",
+        "DT",
+        "ARCH",
+        "CAD",
+        "PPC",
+        "BTE",
+        "CYP",
+        "EAC",
+        "XXX",
+        "42",
+        "TGC",
+        "RPC",
+        "VDO",
+        "ELC",
+        "PXC",
+        "UTC",
+        "AC",
+        "TRON",
+        "ICB",
+        "AERO",
+        "START",
+        "ZRC",
+        "CNC",
+        "STR",
+        "EMC2",
+        "EXCL",
+        "SLG",
+        "CACH",
+        "XCASH",
+        "ZCC",
+        "NRB",
+        "HUC",
+        "LGD",
+        "KGC",
+        "AUR",
+        "ARG",
+        "NRS",
+        "ARI",
+        "LK7",
+        "SUPER",
+        "POT",
+        "EZC"
+    ],
+    "BTB": [
+        "XRP",
+        "BTC"
+    ],
+    "BTM": [
+        "XRP",
+        "BTC"
+    ],
+    "LTCD": [
+        "XRP",
+        "BTC"
+    ],
+    "CBX": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "RZR": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "JBS": [
+        "BTC"
+    ],
+    "BLK": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "CRYPT": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "GLC": [
+        "BTC"
+    ],
+    "GLD": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "NEC": [
+        "XRP",
+        "BTC"
+    ],
+    "DVC": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "CASH": [
+        "BTC"
+    ],
+    "UTIL": [
+        "BTC"
+    ],
+    "XNC": [
+        "LTC"
+    ],
+    "USD": [
+        "PPC",
+        "NXT",
+        "LTC",
+        "DOGE",
+        "FTC",
+        "DASH",
+        "RDD",
+        "XPY",
+        "ZRC",
+        "BTC",
+        "CAD",
+        "XRP",
+        "EUR"
+    ],
+    "BCX": [
+        "BTC"
+    ],
+    "CTM": [
+        "LTC"
+    ],
+    "NET": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "SILK": [
+        "XRP",
+        "BTC"
+    ],
+    "SMC": [
+        "BTC"
+    ],
+    "COL": [
+        "LTC",
+        "XRP"
+    ],
+    "RED": [
+        "LTC"
+    ],
+    "DGB": [
+        "XRP",
+        "BTC"
+    ],
+    "DGC": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "TEK": [
+        "XRP",
+        "BTC"
+    ],
+    "GUE": [
+        "LTC",
+        "BTC"
+    ],
+    "TRC": [
+        "XRP",
+        "BTC"
+    ],
+    "BITB": [
+        "BTC"
+    ],
+    "KDC": [
+        "BTC"
+    ],
+    "ASC": [
+        "LTC"
+    ],
+    "TOR": [
+        "BTC"
+    ],
+    "ZET": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "NBL": [
+        "BTC"
+    ],
+    "TES": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "QRK": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "JKC": [
+        "BTC"
+    ],
+    "FRC": [
+        "XRP",
+        "BTC"
+    ],
+    "SRC": [
+        "XRP",
+        "BTC"
+    ],
+    "ADT": [
+        "LTC"
+    ],
+    "CAP": [
+        "XRP",
+        "BTC"
+    ],
+    "DIME": [
+        "LTC"
+    ],
+    "FRK": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "XC": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "RBBT": [
+        "LTC"
+    ],
+    "GME": [
+        "LTC"
+    ],
+    "FLT": [
+        "XRP",
+        "BTC"
+    ],
+    "LTC": [
+        "NYAN",
+        "DMC",
+        "TIX",
+        "FLO",
+        "GUE",
+        "ASC",
+        "CRYPT",
+        "RZR",
+        "MST",
+        "GLD",
+        "CLOAK",
+        "DVC",
+        "XNC",
+        "WDC",
+        "FST",
+        "LOT",
+        "IFC",
+        "ELP",
+        "CTM",
+        "NET",
+        "COL",
+        "RED",
+        "FLAP",
+        "PPC",
+        "DGC",
+        "SXC",
+        "KARM",
+        "MEOW",
+        "BAT",
+        "EAC",
+        "QRK",
+        "VRC",
+        "PXC",
+        "TIPS",
+        "TES",
+        "NXT",
+        "ADT",
+        "BTC",
+        "XPM",
+        "DIME",
+        "FRK",
+        "XC",
+        "RBBT",
+        "GME",
+        "DASH",
+        "RDD",
+        "CPR",
+        "AUR",
+        "HTML5",
+        "BLK",
+        "VTC",
+        "MEM",
+        "USD",
+        "XRP",
+        "YAC",
+        "DBL",
+        "LEAF",
+        "LTCX",
+        "MEC",
+        "ANC",
+        "ZEIT",
+        "MAX",
+        "CNC",
+        "DOGE",
+        "FTC",
+        "MOON",
+        "SBC",
+        "ZET",
+        "CBX",
+        "EZC",
+        "SUPER",
+        "GLYPH"
+    ],
+    "RDD": [
+        "LTC",
+        "USD",
+        "XRP",
+        "BTC"
+    ],
+    "UNB": [
+        "XRP",
+        "BTC"
+    ],
+    "Points": [
+        "BTC"
+    ],
+    "COMM": [
+        "BTC"
+    ],
+    "ZED": [
+        "BTC"
+    ],
+    "MAX": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "ELP": [
+        "LTC"
+    ],
+    "MINT": [
+        "XRP",
+        "BTC"
+    ],
+    "CLR": [
+        "XRP",
+        "BTC"
+    ],
+    "UNO": [
+        "XRP",
+        "BTC"
+    ],
+    "ALN": [
+        "XRP",
+        "BTC"
+    ],
+    "MED": [
+        "BTC"
+    ],
+    "MEC": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "DOGE": [
+        "LTC",
+        "USD",
+        "XRP",
+        "BTC"
+    ],
+    "MEM": [
+        "LTC"
+    ],
+    "HVC": [
+        "XRP",
+        "BTC"
+    ],
+    "ZCC": [
+        "BTC"
+    ],
+    "NAUT": [
+        "XRP",
+        "BTC"
+    ],
+    "BAT": [
+        "LTC"
+    ],
+    "SBC": [
+        "LTC",
+        "BTC"
+    ],
+    "CRAVE": [
+        "BTC"
+    ],
+    "GDC": [
+        "BTC"
+    ],
+    "NMB": [
+        "XRP",
+        "BTC"
+    ],
+    "NMC": [
+        "XRP",
+        "BTC"
+    ],
+    "KEY": [
+        "XRP",
+        "BTC"
+    ],
+    "ORB": [
+        "XRP",
+        "BTC"
+    ],
+    "BEN": [
+        "BTC"
+    ],
+    "GLYPH": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "SAT2": [
+        "BTC"
+    ],
+    "SSV": [
+        "XRP",
+        "BTC"
+    ],
+    "BNCR": [
+        "BTC"
+    ],
+    "CIN": [
+        "BTC"
+    ],
+    "IFC": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "RIPO": [
+        "BTC"
+    ],
+    "FC2": [
+        "BTC"
+    ],
+    "RT2": [
+        "BTC"
+    ],
+    "CAT": [
+        "BTC"
+    ],
+    "HYP": [
+        "BTC"
+    ],
+    "GML": [
+        "BTC"
+    ],
+    "WBB": [
+        "BTC"
+    ],
+    "LOT": [
+        "LTC",
+        "XRP"
+    ],
+    "FRAC": [
+        "BTC"
+    ],
+    "DT": [
+        "XRP",
+        "BTC"
+    ],
+    "ARCH": [
+        "BTC"
+    ],
+    "MRY": [
+        "XRP",
+        "BTC"
+    ],
+    "PPC": [
+        "LTC",
+        "USD",
+        "XRP",
+        "BTC"
+    ],
+    "BTE": [
+        "BTC"
+    ],
+    "CYP": [
+        "BTC"
+    ],
+    "CLAM": [
+        "BTC"
+    ],
+    "EAC": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "XXX": [
+        "XRP",
+        "BTC"
+    ],
+    "42": [
+        "XRP",
+        "BTC"
+    ],
+    "TGC": [
+        "BTC"
+    ],
+    "RPC": [
+        "BTC"
+    ],
+    "VDO": [
+        "BTC"
+    ],
+    "ELC": [
+        "BTC"
+    ],
+    "PXC": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "TIPS": [
+        "LTC",
+        "XRP"
+    ],
+    "KARM": [
+        "LTC",
+        "XRP"
+    ],
+    "UTC": [
+        "XRP",
+        "BTC"
+    ],
+    "AC": [
+        "XRP",
+        "BTC"
+    ],
+    "TRON": [
+        "BTC"
+    ],
+    "ICB": [
+        "XRP",
+        "BTC"
+    ],
+    "AERO": [
+        "XRP",
+        "BTC"
+    ],
+    "CNL": [
+        "BTC"
+    ],
+    "ARG": [
+        "XRP",
+        "BTC"
+    ],
+    "START": [
+        "BTC"
+    ],
+    "ZRC": [
+        "USD",
+        "BTC"
+    ],
+    "HTML5": [
+        "LTC",
+        "XRP"
+    ],
+    "STR": [
+        "BTC"
+    ],
+    "MN": [
+        "BTC"
+    ],
+    "EXCL": [
+        "BTC"
+    ],
+    "SLG": [
+        "XRP",
+        "BTC"
+    ],
+    "CACH": [
+        "BTC"
+    ],
+    "XCASH": [
+        "BTC"
+    ],
+    "EMC2": [
+        "XRP",
+        "BTC"
+    ],
+    "LTB": [
+        "XRP",
+        "BTC"
+    ],
+    "NRB": [
+        "BTC"
+    ],
+    "HUC": [
+        "XRP",
+        "BTC"
+    ],
+    "LGD": [
+        "BTC"
+    ],
+    "KGC": [
+        "BTC"
+    ],
+    "AUR": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "CAD": [
+        "USD",
+        "BTC"
+    ],
+    "SDC": [
+        "XRP",
+        "BTC"
+    ],
+    "NRS": [
+        "BTC"
+    ],
+    "ARI": [
+        "BTC"
+    ],
+    "LK7": [
+        "BTC"
+    ],
+    "SUPER": [
+        "LTC",
+        "XRP",
+        "BTC"
+    ],
+    "POT": [
+        "XRP",
+        "BTC"
+    ],
+    "EZC": [
+        "LTC",
+        "BTC"
+    ]
+}

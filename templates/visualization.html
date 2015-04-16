@@ -8,27 +8,18 @@
 
   <script type="text/javascript">
     $(document).ready(function() {
-      var allData = [];
+      var nodeData = [];
       var dateFormatter = d3.time.format("%d-%H:%M");
 
       var initVis = function() {
         var MyEventHandler = {};
-        var cex = new Cex(d3.select("#node-container"), allData, MyEventHandler);
+        var force = new Force(d3.select("#node-container"), nodeData, MyEventHandler);
       };
 
-      var dataLoaded = function(error, _allData) {
+      var dataLoaded = function(error, _nodeData) {
         if (!error) {
 
-          allData = _allData.map(function (d) {
-                      var pre_date = new Date(d.date * 1000);
-                      var res = {
-                          time: d.date,
-                          money: Math.floor(d.amount * d.price)
-                      };
-                      console.log(res);
-                      return res;
-
-                    });
+          nodeData = _nodeData;
 
           initVis();
         }
@@ -36,8 +27,8 @@
 
       var startHere = function(){
         queue()
-          .defer(d3.json, "{{url_for('static', filename='data/bitstamp.json')}}") 
-          .await(dataLoaded); 
+        .defer(d3.json, "{{url_for('static', filename='data/nodes.json')}}")
+        .await(dataLoaded); 
       }
 
       startHere();
