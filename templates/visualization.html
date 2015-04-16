@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
-  <div id="cex" style="margin-bottom:100px;">
+  <div id="node-container" style="margin-bottom:100px;">
 
   </div>
 
@@ -13,7 +13,7 @@
 
       var initVis = function() {
         var MyEventHandler = {};
-        var cex = new Cex(d3.select("#cex"), allData, MyEventHandler);
+        var cex = new Cex(d3.select("#node-container"), allData, MyEventHandler);
       };
 
       var dataLoaded = function(error, _allData) {

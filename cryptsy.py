@@ -20,15 +20,18 @@ class Cryptsy(object):
 	    where the markets array is what interests us.
 	    """
 		self.url = url
-		# Sets self.data to be a 
 		self.data = requests.get(self.url).json()
+		self.formatted_data = self.data["return"]["markets"]
+		self.nodes = {}
+		self.crypto_pairs = []
+
 
 	def write_to_file(self):
 		"""Writes to a JSON dump file with the self.data of the 
 		current Bitstamp class
 	    """
-		with open('data/markets.json', 'w') as f:
-			json.dump(self.data, f,sort_keys=False,
+		with open('static/data/markets.json', 'w') as f:
+			json.dump(self.formatted_data, f,sort_keys=False,
 			 			indent=4, separators=(',', ': '))
 
 	def markets(self):
@@ -38,9 +41,9 @@ class Cryptsy(object):
 	    list looks like BTC/DOG so that we obtain a list of exchanges
 	    of the form ['BTC/DOG', 'DRK/MTC', 'RLP/BTC', ...]
 	    """
-		return self.data["return"]["markets"].keys()
+		return self.formatted_data.keys()
 
-	def cryptocurrencies(self):
+	def cryptocurrency_names(self):
 		"""Obtains a set of unique cryptocurrency names in our market 
 		data
 
@@ -52,9 +55,23 @@ class Cryptsy(object):
 		for key in keys:
 			coins.update(key.split('/'))
 		return coins
-			
+
+	def cryptocurrency_pairs(self):
+		keys = self.markets()
+		pairs = []
+		for key in keys:
+			pairs.append(key.split('/'))
+		self.crypto_pairs = pairs
+	
+	def build_nodes(self):
+		for coin in self.cryptocurrency_names():
+			self.nodes[coin] = set()
+
+		# Now append the coins it is linked to
+
 
 if __name__ == '__main__':
 	b = Cryptsy('http://pubapi.cryptsy.com/api.php?method=marketdatav2')
-	b.write_to_file()
+	b.build_nodes()
+	print b.cryptocurrency_pairs()
 
