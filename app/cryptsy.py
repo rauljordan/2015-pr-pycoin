@@ -1,9 +1,8 @@
 
-from formatter import Formatter
 import requests
 import json
 
-class Cryptsy(Formatter):
+class Cryptsy(object):
 
 	"""This class scrapes the Cryptsy Market API and fetches a JSON object 
 	containing all important transactions in the past week if possible 
@@ -22,6 +21,23 @@ class Cryptsy(Formatter):
 			json.dump(self.data, f,sort_keys=False,
 			 			indent=4, separators=(',', ': '))
 
+	def markets(self):
+		return self.data["return"]["markets"].keys()
+
+	def cryptocurrencies(self):
+		keys = self.markets()
+		coins = set()
+		for key in keys:
+			coins.update(key.split('/'))
+		return coins
+			
+		
+   			
+
+
+
 if __name__ == '__main__':
 	b = Cryptsy('http://pubapi.cryptsy.com/api.php?method=marketdatav2')
-	print b.write_to_file()
+	for coin in b.cryptocurrencies():
+		print coin
+
