@@ -1,9 +1,8 @@
 
-from formatter import Formatter
 import requests
 import json
 
-class Cryptsy(Formatter):
+class Cryptsy(object):
 
 	"""This class scrapes the Cryptsy Market API and fetches a JSON object 
 	containing all important transactions in the past week if possible 
