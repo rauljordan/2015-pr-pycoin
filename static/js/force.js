@@ -13,9 +13,9 @@ Force = function(_parentElement, _nodeData, _eventHandler){
     this.displayData = [];
     var style = window.getComputedStyle(this.parentElement.node(), null);
 
-    this.margin = {top: 20, right: 50, bottom: 30, left: 60},
+    this.margin = {top: 20, right: 50, bottom: 30, left: 20},
     this.width = parseInt(style.getPropertyValue('width')) - this.margin.left - this.margin.right;
-    this.height = 800 - this.margin.top - this.margin.bottom;
+    this.height = 500 - this.margin.top - this.margin.bottom;
 
     this.initVis();
 }
@@ -45,13 +45,20 @@ Force.prototype.initVis = function(){
 	   }; 
 	});
 
-	this.graph.nodes.forEach(function(source_node, i) {
-	  that.graph.nodes.forEach(function(end_node, j) {
-	    if (_.contains(source_node.linked_coins, end_node.name) && i != j) {
-	    	that.graph.links.push({"source": i, "target": j})
-	    }
+	var node_names = this.graph.nodes.map(function(val, i) {
+		return val.name;
+	});
 
-	  })
+
+	this.graph.nodes.forEach(function(source_node, i) {
+
+			source_node.linked_coins.forEach(function(coin, d) {
+
+				var end_target = node_names.indexOf(coin);
+				that.graph.links.push({"source":i,"target":end_target});
+
+			});
+		
 	})
 
 	
@@ -63,23 +70,38 @@ Force.prototype.initVis = function(){
 	this.link.enter().append("line")
 	    .attr("class", "link")
 
+	this.link.
+		on('mouseover', function(d) {
+			d3.select(this).style({'stroke':'red', 'stroke-width':'15px'})
+				
+		})
+		.on('mouseout', function(d) {
+			
+			d3.select(this).style({'stroke':'#008894','stroke-width':'2px'})
+		});
+
 	this.node = this.svg.selectAll(".node")
 	              .data(this.graph.nodes)
 	              .enter()
 	              .append("g").attr("class", "node")
-	              .on("mouseover", function(d) {
-	              	alert(d.name);
-	              	console.log(d.linked_coins);
-	              })
+	              
               	  
 
 	this.node.append("circle")
 	    .attr("r", 7)
 
+	this.node.append("text")
+				  .attr("dx", ".80em")
+				  .attr("dy", ".10em")
+		          .text(function(d) { return d.name; })
+
+	this.svg.selectAll('text.label').attr("fill", "black")
+
 	this.force = d3.layout.force()
 	    .size([this.width, this.height])
 	    .charge(-50)
-	    .linkDistance(10);
+	    .linkDistance(10)
+	    .gravity(0.1);
 
 	this.forceLayout();
 

@@ -5,18 +5,15 @@
 
 .link {
   stroke: #008894;
-  stroke-width: 1px;
+  stroke-width: 2px;
 }
 
 .node {
   fill: #ffab00;
-  stroke: #008894;
-  stroke-width: .9px;
+  stroke:#000000;
+  stroke-width:2px;
 }
 
-.node:hover {
-  fill: black;
-}
 
 .node:hover,
 .node--source,
