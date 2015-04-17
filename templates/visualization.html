@@ -18,7 +18,11 @@
       var initVis = function() {
         var MyEventHandler = {};
         var force = new Force(d3.select("#node-container"), nodeData, MyEventHandler);
-        var barchart = new Barchart(d3.select("#barchart-container"), nodeData, marketData, MyEventHandler)
+        var barchart = new Barchart(d3.select("#barchart-container"), marketData, MyEventHandler);
+
+        $(MyEventHandler).bind("selectionChanged", function(event, names){
+            barchart.onSelectionChange(names);
+        });
       };
 
       var dataLoaded = function(error, _nodeData, _marketData) {

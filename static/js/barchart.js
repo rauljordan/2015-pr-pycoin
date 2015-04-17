@@ -1,21 +1,25 @@
 
-/**
- * Force object for Pycoin
- * @param _parentElement -- the HTML or SVG element (D3 node) to which to attach the vis
- * @param _nodeData -- the node data array
- * @param _eventHandler -- the Eventhandling Object to emit data to (see Task 4)
- * @constructor
- */
-Barchart = function(_parentElement,_nodeData, _marketData, _eventHandler){
+
+Barchart = function(_parentElement, _marketData, _eventHandler){
     this.parentElement = _parentElement;
-    this.data = _nodeData;
+    this.data = _marketData;
     this.eventHandler = _eventHandler;
-    this.displayData = [];
+    this.displayData = this.data["MNC/XRP"]["recenttrades"];
     var style = window.getComputedStyle(this.parentElement.node(), null);
 
-    this.margin = {top: 20, right: 50, bottom: 30, left: 20},
+    this.margin = {top: 20, right: 50, bottom: 200, left: 60},
     this.width = parseInt(style.getPropertyValue('width')) - this.margin.left - this.margin.right;
     this.height = 500 - this.margin.top - this.margin.bottom;
+
+    this.dateFormatter = d3.time.format("%d-%H:%M");
+
+    var that = this;
+  
+    this.times = d3.range(0, that.displayData.length).map(function(i) {
+      return that.displayData[i]["time"];
+    });
+
+    this.axis_label = "BTC/LTC";
 
     this.initVis();
 }
@@ -26,121 +30,173 @@ Barchart = function(_parentElement,_nodeData, _marketData, _eventHandler){
  */
 Barchart.prototype.initVis = function(){
 
-    var that = this; 
-    
+    // constructs SVG layout
     this.svg = this.parentElement.append("svg")
         .attr("width", this.width + this.margin.left + this.margin.right)
         .attr("height", this.height + this.margin.top + this.margin.bottom)
         .append("g")
         .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
-    this.graph = {nodes: [], links: []};
+    // creates axis and scales
+    this.y = d3.scale.linear()
+      .range([this.height,0]);
 
-	this.nb_nodes = Object.keys(this.data).length;
-
-	this.graph.nodes = Object.keys(this.data).map(function(val, i) {
-	   return { 
-	    	name:val,
-	    	linked_coins:that.data[val]
-	   }; 
-	});
-
-	var node_names = this.graph.nodes.map(function(val, i) {
-		return val.name;
-	});
+    this.x = d3.scale.ordinal()
+      .rangeRoundBands([0, this.width], .1);
 
 
-	this.graph.nodes.forEach(function(source_node, i) {
+    this.xAxis = d3.svg.axis()
+      .scale(this.x)
+      .ticks(6)
+      .orient("bottom");
 
-			source_node.linked_coins.forEach(function(coin, d) {
+    this.yAxis = d3.svg.axis()
+      .scale(this.y)
+      .orient("left");
 
-				var end_target = node_names.indexOf(coin);
-				that.graph.links.push({"source":i,"target":end_target});
+    // Add axes visual elements
+    this.svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + this.height + ")");
 
-			});
-		
-	})
+    this.svg.append("g")
+      .attr("class", "y axis")
+      .attr("transform", "translate(0,0)")
+      .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text(this.axis_label);
+        
 
-	
+    // filter, aggregate, modify data
+    this.wrangleData(null);
 
-    
-    this.link = this.svg.selectAll(".link")
-              		.data(this.graph.links);
+    // call the update method
+    this.updateVis();
+}
 
-	this.link.enter().append("line")
-	    .attr("class", "link")
 
-	this.link.
-		on('mouseover', function(d) {
-			d3.select(this).style({'stroke':'red', 'stroke-width':'15px'})
-				
-		})
-		.on('mouseout', function(d) {
-			
-			d3.select(this).style({'stroke':'#008894','stroke-width':'2px'})
-		});
+/**
+ * Method to wrangle the data. In this case it takes an options object
+ * @param _filterFunction - a function that filters data or "null" if none
+ */
+Barchart.prototype.wrangleData = function(_filterFunction){
 
-	this.node = this.svg.selectAll(".node")
-	              .data(this.graph.nodes)
-	              .enter()
-	              .append("g").attr("class", "node")
-	              
-              	  
+    return;
 
-	this.node.append("circle")
-	    .attr("r", 7)
 
-	this.node.append("text")
-				  .attr("dx", ".80em")
-				  .attr("dy", ".10em")
-		          .text(function(d) { return d.name; })
+}
 
-	this.svg.selectAll('text.label').attr("fill", "black")
-
-	this.force = d3.layout.force()
-	    .size([this.width, this.height])
-	    .charge(-50)
-	    .linkDistance(10)
-	    .gravity(0.1);
-
-	this.forceLayout();
-
-	this.force
-	    .on("tick", this.graph_update(0))
-	    .on("start", function(d) {})
-	    .on("end", function(d) {})
-	    .start();
-
-    
-};
 
 
 /**
  * the drawing function - should use the D3 selection, enter, exit
- * @param _options -- only needed if different kinds of updates are needed
  */
-Barchart.prototype.forceLayout = function(){
+Barchart.prototype.updateVis = function(){
 
-    this.force.nodes(this.graph.nodes)
-      .links(this.graph.links)
-      .start();
 
-};
+    var that = this;
+    // updates scales
+    this.x.domain(that.times);
+    this.y.domain([0, d3.max(this.displayData, function(d) {
+      return d.quantity;
+    })]);
 
-Barchart.prototype.graph_update = function(duration) {
+    // updates axis
+    this.svg.select(".x.axis")
+        .call(this.xAxis)
+        .selectAll("text")
+        .style("text-anchor", "end")
+        .attr("transform", "translate(0,0)")
+        .attr("transform", function(d){
+          return "rotate(-65) translate(0,-10)"
+        });
 
-	this.link.transition().duration(duration)
-      .attr("x1", function(d) { return d.target.x; })
-      .attr("y1", function(d) { return d.target.y; })
-      .attr("x2", function(d) { return d.source.x; })
-      .attr("y2", function(d) { return d.source.y; });
+    this.svg.select(".y.axis")
+        .call(this.yAxis);
 
-  	this.node.transition().duration(duration)
-      .attr("transform", function(d) {
-        return "translate("+d.x+","+d.y+")"; 
+
+    // Data join
+    var bar = this.svg.selectAll(".bar")
+        .data(that.displayData);
+    // Append new bar groups, if required
+    var bar_enter = bar.enter().append("g");
+
+    // Append a rect and a text only for the Enter set (new g)
+    bar_enter.append("rect");
+    bar_enter.append("text");
+
+  
+    // Add attributes (position) to all bars
+    bar
+      .attr("class", "bar")
+      .transition()
+      .attr("transform", function(d, i) { 
+        return "translate("+that.x(that.times[i])+",0)"; 
       });
-};
 
-Barchart.prototype.tick = function(d) {
-	this.graph_update(0);
-};
+    // Remove the extra bars
+    bar.exit()
+      .remove();
+
+    // Update all inner rects and texts (both update and enter sets)
+
+    bar.select("rect")
+      .attr("x", 0)
+      .attr("y", function(d,i) {
+        return that.y(d.quantity);
+      })
+      .attr("width", this.x.rangeBand())
+      .style("fill", '#008894')
+      .transition()
+      .attr("height", function(d, i) {
+          return that.height - that.y(d.quantity);
+      });
+
+
+}
+
+
+/**
+ * Gets called by event handler and should create new aggregated data
+ * aggregation is done by the function "aggregate(filter)". Filter has to
+ * be defined here.
+ * @param selection
+ */
+Barchart.prototype.onSelectionChange = function (name){
+
+    /*
+    this.wrangleData(function(d){
+      return d.time >= selectionStart && d.time <= selectionEnd;
+    });
+    */
+   this.axis_label = name;
+   d3.select('.y.axis').select('text').text(this.axis_label);
+
+
+   this.displayData = this.data[this.axis_label]["recenttrades"];
+   
+
+   this.updateVis();
+} 
+
+
+/**
+ * The aggregate function that creates the counts for each age for a given filter.
+ * @param _filter - A filter can be, e.g.,  a function that is only true for data of a given time range
+ * @returns {Array|*}
+ */
+Barchart.prototype.filterAndAggregate = function(_filter){
+
+    // Set filter to a function that accepts all items
+    // ONLY if the parameter _filter is NOT null use this parameter
+    var filter = function(){return true;}
+    if (_filter != null){
+        filter = _filter;
+    }
+    var that = this;
+}
+
+

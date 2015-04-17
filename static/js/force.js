@@ -72,12 +72,14 @@ Force.prototype.initVis = function(){
 
 	this.link.
 		on('mouseover', function(d) {
-			d3.select(this).style({'stroke':'red', 'stroke-width':'15px'})
+			d3.select(this).style({'stroke':'red', 'stroke-width':'15px'});
+			var name = d.source.name + '/' + d.target.name;
+			$(that.eventHandler).trigger("selectionChanged", name);
 				
 		})
 		.on('mouseout', function(d) {
 			
-			d3.select(this).style({'stroke':'#008894','stroke-width':'2px'})
+			d3.select(this).style({'stroke':'#008894','stroke-width':'2px'});
 		});
 
 	this.node = this.svg.selectAll(".node")
