@@ -12,17 +12,20 @@
   <script type="text/javascript">
     $(document).ready(function() {
       var nodeData = [];
+      var marketData = [];
       var dateFormatter = d3.time.format("%d-%H:%M");
 
       var initVis = function() {
         var MyEventHandler = {};
         var force = new Force(d3.select("#node-container"), nodeData, MyEventHandler);
+        var barchart = new Barchart(d3.select("#barchart-container"), nodeData, marketData, MyEventHandler)
       };
 
-      var dataLoaded = function(error, _nodeData) {
+      var dataLoaded = function(error, _nodeData, _marketData) {
         if (!error) {
 
           nodeData = _nodeData;
+          marketData = _marketData;
 
           initVis();
         }
@@ -31,6 +34,7 @@
       var startHere = function(){
         queue()
         .defer(d3.json, "{{url_for('static', filename='data/nodes.json')}}")
+        .defer(d3.json, "{{url_for('static', filename='data/markets.json')}}")
         .await(dataLoaded); 
       }
 
