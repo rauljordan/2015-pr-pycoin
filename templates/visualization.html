@@ -1,8 +1,9 @@
 {% extends "layout.html" %}
 
 {% block content %}
-  <div id="node-container" style="margin-bottom:50px;">
+      <img src="{{url_for('static', filename='img/714.GIF')}}" style="width:300px;height:300;" class="loader">
 
+  <div id="node-container" style="margin-bottom:50px;">
   </div>
   <div id="barchart-container" style="margin-bottom:50px;">
 
@@ -27,6 +28,7 @@
 
       var dataLoaded = function(error, _nodeData, _marketData) {
         if (!error) {
+          //$('.loader').hide();
 
           nodeData = _nodeData;
           marketData = _marketData;

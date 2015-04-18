@@ -1,5 +1,6 @@
 Pycoin
 ======
+** NOTE: OUR DATA TAKES A WHILE TO LOAD SO IF YOU START THE VISUALIZATION AND SEE NOTHING JUST WAIT FOR A LITTE **
 
 All Our Data is Inside /static/data/
 
