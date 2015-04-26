@@ -9,7 +9,7 @@ Barchart = function(_parentElement, _marketData, _eventHandler){
 
     this.margin = {top: 20, right: 50, bottom: 200, left: 60},
     this.width = parseInt(style.getPropertyValue('width')) - this.margin.left - this.margin.right;
-    this.height = 500 - this.margin.top - this.margin.bottom;
+    this.height = 420 - this.margin.top - this.margin.bottom;
 
     this.dateFormatter = d3.time.format("%d-%H:%M");
 

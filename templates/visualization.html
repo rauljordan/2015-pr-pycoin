@@ -4,11 +4,18 @@
   <img src="{{url_for('static', filename='img/714.GIF')}}" style="width:200px;height:200;" class="loader centered">
 
   <div class="row">
-    <div id="node-container" class="col s6" style="margin-bottom:50px;margin-top:50px;">
+    <div id="node-container" class="col s6" style="margin-top:50px;">
 
     </div>
-    <div id="barchart-container" class="col s6" style="margin-bottom:50px;margin-top:50px;">
+    <div class="col s6" style="margin-bottom:50px;margin-top:50px;">
+      <div class="row">
+        <div id="barchart-container" class="col s12" style="margin-bottom:50px;margin-top:50px;">
 
+        </div>
+        <div id="barchart-container2" class="col s12" style="margin-bottom:50px;">
+
+        </div>
+      </div>
     </div>
   </div>
   
@@ -28,8 +35,11 @@
         var force = new Force(d3.select("#node-container"), nodeData, MyEventHandler);
         var barchart = new Barchart(d3.select("#barchart-container"), marketData, MyEventHandler);
 
+        var barchart2 = new Barchart(d3.select("#barchart-container2"), marketData, MyEventHandler);
+
         $(MyEventHandler).bind("selectionChanged", function(event, names){
             barchart.onSelectionChange(names);
+            barchart2.onSelectionChange(names);
         });
       };
 
