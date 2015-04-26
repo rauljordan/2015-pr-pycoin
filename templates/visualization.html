@@ -1,17 +1,24 @@
 {% extends "layout.html" %}
 
 {% block content %}
-      <img src="{{url_for('static', filename='img/714.GIF')}}" style="width:300px;height:300;" class="loader">
+  <img src="{{url_for('static', filename='img/714.GIF')}}" style="width:200px;height:200;" class="loader centered">
 
-  <div id="node-container" style="margin-bottom:50px;">
-  </div>
-  <div id="barchart-container" style="margin-bottom:50px;">
+  <div class="row">
+    <div id="node-container" class="col s6" style="margin-bottom:50px;margin-top:50px;">
 
+    </div>
+    <div id="barchart-container" class="col s6" style="margin-bottom:50px;margin-top:50px;">
+
+    </div>
   </div>
+  
+
 
 
   <script type="text/javascript">
     $(document).ready(function() {
+      $('.page-footer').hide();
+
       var nodeData = [];
       var marketData = [];
       var dateFormatter = d3.time.format("%d-%H:%M");
@@ -28,7 +35,8 @@
 
       var dataLoaded = function(error, _nodeData, _marketData) {
         if (!error) {
-          //$('.loader').hide();
+          $('.loader').hide();
+          $('.page-footer').show();
 
           nodeData = _nodeData;
           marketData = _marketData;
