@@ -112,8 +112,7 @@ Force.prototype.initVis = function(){
 	    .on("start", function(d) {})
 	    .on("end", function(d) {})
 	    .start();
-
-    
+  
 };
 
 
@@ -121,11 +120,26 @@ Force.prototype.initVis = function(){
  * the drawing function - should use the D3 selection, enter, exit
  * @param _options -- only needed if different kinds of updates are needed
  */
+Force.prototype.dblclick = function(d) {
+  	d3.select(this).classed("fixed", d.fixed = false);
+}
+
+Force.prototype.dragstart = function(d) {
+  	d3.select(this).classed("fixed", d.fixed = true);
+}
+
 Force.prototype.forceLayout = function(){
 
     this.force.nodes(this.graph.nodes)
       .links(this.graph.links)
       .start();
+
+    var drag = force.drag()
+      .on("dragstart", dragstart);
+
+    this.node = 
+      .on("dblclick", dblclick)
+      .call(drag);
 
 };
 
