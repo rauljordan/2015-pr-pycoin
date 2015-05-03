@@ -13,9 +13,9 @@ Force = function(_parentElement, _nodeData, _eventHandler){
     this.displayData = [];
     var style = window.getComputedStyle(this.parentElement.node(), null);
 
-    this.margin = {top: 20, right: 50, bottom: 10, left: 20},
+    this.margin = {top: 20, right: 50, bottom: 30, left: 20},
     this.width = parseInt(style.getPropertyValue('width')) - this.margin.left - this.margin.right;
-    this.height = 500 - this.margin.top - this.margin.bottom;
+    this.height = 800 - this.margin.top - this.margin.bottom;
 
     this.initVis();
 }
@@ -63,7 +63,6 @@ Force.prototype.initVis = function(){
 
 	this.link = this.svg.selectAll(".link");
     this.node = this.svg.selectAll(".node");
-    this.radius = 10;
 
 
 	this.svg.selectAll('text.label').attr("fill", "black")
@@ -71,6 +70,60 @@ Force.prototype.initVis = function(){
 	// Makes the force layout
 	this.makeForce(this.graph);
 	
+
+    /*
+    this.link = this.svg.selectAll(".link")
+              		.data(this.graph.links);
+
+	this.link.enter().append("line")
+	    .attr("class", "link")
+
+	this.link.
+		on('mouseover', function(d) {
+			d3.select(this).style({'stroke':'red', 'stroke-width':'15px'});
+			var name = d.source.name + '/' + d.target.name;
+			$(that.eventHandler).trigger("selectionChanged", name);
+				
+		})
+		.on('mouseout', function(d) {
+			
+			d3.select(this).style({'stroke':'#008894','stroke-width':'2px'});
+		});
+
+	this.node = this.svg.selectAll(".node")
+	              .data(this.graph.nodes)
+	              .enter()
+	              .append("g").attr("class", "node")
+	              
+              	  
+
+	this.svg.selectAll('text.label').attr("fill", "black")
+
+	this.force = d3.layout.force()
+	    .size([this.width, this.height])
+	    .charge(-400)
+	    .linkDistance(40)
+	    .on('tick', this.tick)
+
+
+	this.drag = this.force.drag()
+    	.on("dragstart", this.dragstart);
+
+   	this.force
+      .nodes(this.graph.nodes)
+      .links(this.graph.links)
+      .start();
+
+    this.node.append("circle")
+	    .attr("r", 7)
+
+	this.node.append("text")
+				  .attr("dx", ".80em")
+				  .attr("dy", ".10em")
+		          .text(function(d) { return d.name; })
+		          .on('dblclick', this.dblclick)
+		          .call('drag');
+  	*/
 };
 
 
@@ -78,39 +131,16 @@ Force.prototype.makeForce = function(theGraph) {
 	var that = this;
 	this.force = d3.layout.force()
 	    .size([this.width, this.height])
-	    .gravity(0.1)
-	    .charge(-300)
-	    .linkDistance(80)
+	    .charge(-100)
+	    .linkDistance(300)
 	    .on("tick", function() {
 	    	  that.link.attr("x1", function(d) { return d.source.x; })
 			      .attr("y1", function(d) { return d.source.y; })
 			      .attr("x2", function(d) { return d.target.x; })
 			      .attr("y2", function(d) { return d.target.y; });
 
-			 
-			  that.node.attr("cx", function(d) { 
-
-			  		if (d.name == "BTC" || d.name == "LTC") {
-			  			d3.select(this).classed("fixed", d.fixed = true);
-			  			return d.x;
-			  		}
-			  		else {
-			  			return d.x = Math.max(that.radius, 
-			  				Math.min(that.width - that.radius, d.x)); 
-			  		}
-			  		
-			  	})
-        		.attr("cy", function(d) { 
-        			if (d.name == "BTC" || d.name == "LTC") {
-			  			d3.select(this).classed("fixed", d.fixed = true);
-			  			return d.y;
-			  		} 
-			  		else {
-			  			return d.y = Math.max(that.radius, 
-        				Math.min(that.height - that.radius, d.y)); 
-			  		}
-        		 
-        		});
+			  that.node.attr("cx", function(d) { return d.x; })
+			      .attr("cy", function(d) { return d.y; });
 	    });
 
 	this.drag = this.force.drag()
@@ -126,29 +156,16 @@ Force.prototype.makeForce = function(theGraph) {
       .attr("class", "link");
 
   this.node = this.node.data(theGraph.nodes)
-      .enter()
-      .append("circle")
+    .enter().append("circle")
       .attr("class", "node")
-      .attr("r", this.radius - 0.75)
+      .attr("r", 12)
       .on("dblclick", this.dblclick)
       .call(this.drag)
 
-  	
-
-   this.link.
-		on('mouseover', function(d) {
-			d3.select(this).style({'stroke':'red', 'stroke-width':'15px'});
-			var name = d.source.name + '/' + d.target.name;
-			$(that.eventHandler).trigger("selectionChanged", name);
-				
-		})
-		.on('mouseout', function(d) {
-			
-			d3.select(this).style({
-				'stroke':'#008894',
-				'stroke-width':'2px'
-			});
-		});
+  this.node.append("text")
+	  .attr("dx", ".80em")
+	  .attr("dy", ".10em")
+      .text(function(d) { return d.name; });
 
 
 
