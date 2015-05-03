@@ -136,13 +136,23 @@ Force.prototype.makeForce = function(theGraph) {
   	
    this.link.
 		on('mouseover', function(d) {
-			
+
 			d3.selectAll(".link").style({'opacity':'0.1'});
 			d3.select(this).style({'stroke':'red', 'stroke-width':'15px', 'opacity':'1'});
 
 			var name = d.source.name + '/' + d.target.name;
 		
 			$(that.eventHandler).trigger("selectionChanged", name);
+
+
+			$("#img1").html('<h1>Hello World </h1>');
+			$("#img2").html('');
+
+			var src1 = "{{url_for('static', filename='img/coins/" + d.source.name + ".png')}}";
+			var src2 = "{{url_for('static', filename='img/coins/" + d.target.name + ".png')}}";
+			$('#img1').html('<img src=' + src1 + ' class="activator">')
+			$('#img2').html('<img src=' + src2 + ' class="activator">')
+
 						
 				
 		})
