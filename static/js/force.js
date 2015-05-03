@@ -13,9 +13,9 @@ Force = function(_parentElement, _nodeData, _eventHandler){
     this.displayData = [];
     var style = window.getComputedStyle(this.parentElement.node(), null);
 
-    this.margin = {top: 20, right: 50, bottom: 30, left: 20},
+    this.margin = {top: 20, right: 50, bottom: 10, left: 20},
     this.width = parseInt(style.getPropertyValue('width')) - this.margin.left - this.margin.right;
-    this.height = 800 - this.margin.top - this.margin.bottom;
+    this.height = 500 - this.margin.top - this.margin.bottom;
 
     this.initVis();
 }

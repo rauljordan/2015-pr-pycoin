@@ -7,17 +7,79 @@
     <div id="node-container" class="col s6" style="margin-top:50px;">
 
     </div>
-    <div class="col s6" style="margin-bottom:50px;margin-top:50px;">
-      <div class="row">
-        <div id="barchart-container" class="col s12" style="margin-bottom:50px;margin-top:50px;">
+    <div class="col s6" style="margin-top:50px;">
 
+      <div class="row" style="margin-left:170px;z-index:100;position:relative;">
+        <div class="col s4">
+          <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+              <img class="activator" src="{{url_for('static', filename='img/coins/BTC.png')}}">
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">BTC <i class="mdi-navigation-more-vert right"></i></span>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">BTC <i class="mdi-navigation-close right"></i></span>
+              <p>Here is some more information about this product that is only revealed once clicked on.</p>
+            </div>
+          </div>
         </div>
-        <div id="barchart-container2" class="col s12" style="margin-bottom:50px;">
-
+        <div class="col s4">
+          <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+              <img class="activator" src="{{url_for('static', filename='img/coins/LTC.png')}}">
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">LTC <i class="mdi-navigation-more-vert right"></i></span>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">LTC <i class="mdi-navigation-close right"></i></span>
+              <p>Here is some more information about this product that is only revealed once clicked on.</p>
+            </div>
+          </div>
         </div>
       </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <select style="position:relative;z-index:10000;">
+            <option value="" disabled selected>Choose the Coin</option>
+            <option value="1">BTC</option>
+            <option value="2">LTC</option>
+            <option value="3">XTC</option>
+          </select>
+          <label>Trading From</label>
+        </div>
+
+        <div class="input-field col s6">
+          <select style="position:relative;z-index:10000;">
+            <option value="" disabled selected>Choose the Coin</option>
+            <option value="1">BTC</option>
+            <option value="2">LTC</option>
+            <option value="3">XTC</option>
+          </select>
+          <label>Trading To</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="mdi-action-search prefix"></i>
+          <input id="icon_prefix" type="text" class="validate">
+          <label for="icon_prefix">Search for Any Cryptocurrencies</label>
+        </div>
+      </div>
+        
     </div>
   </div>
+  <div class="row">
+        <div id="barchart-container" class="col s6" style="margin-bottom:50px;">
+
+        </div>
+        <div id="barchart-container2" class="col s6" style="margin-bottom:50px;">
+
+        </div>
+   </div>
   
 
 
@@ -25,6 +87,7 @@
   <script type="text/javascript">
     $(document).ready(function() {
       $('.page-footer').hide();
+      $('select').material_select();
 
       var nodeData = [];
       var marketData = [];
