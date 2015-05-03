@@ -85,15 +85,39 @@
       $('.page-footer').hide();
       $('select').material_select();
 
+      var introguide = introJs();
+    
+      introguide.setOptions({
+        steps: [
+        {
+          element: '#node-container',
+          intro: 'force layout graph',
+          position: 'bottom'
+        },
+        {
+          element: '#barchart-container',
+          intro: 'linegraph 1',
+          position: 'bottom'
+        },
+        {
+          element: '#barchart-container2',
+          intro: 'linegraph 2',
+          position: 'bottom'
+        },
+        ]
+      });
+      
+
       var nodeData = [];
       var marketData = [];
-      var dateFormatter = d3.time.format("%d-%H:%M");
 
       var initVis = function() {
+        introguide.start();
+
         var MyEventHandler = {};
         var force = new Force(d3.select("#node-container"), nodeData, MyEventHandler);
         var volume = new Volume(d3.select("#barchart-container"), marketData, MyEventHandler);
-        var price = new Price(d3.select("#barchart-container2"), marketData, MyEventHandler);
+        var price = new Cex(d3.select("#barchart-container2"), marketData, MyEventHandler);
 
         $(MyEventHandler).bind("selectionChanged", function(event, names){
             volume.onSelectionChange(names);

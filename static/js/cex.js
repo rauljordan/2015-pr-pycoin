@@ -11,7 +11,7 @@ Cex = function(_parentElement, _data, _eventHandler){
     this.parentElement = _parentElement;
     this.data = _data;
     this.eventHandler = _eventHandler;
-    this.displayData = this.data["LTC/BTC"]["recenttrades"];
+    this.displayData = this.data["CTM/LTC"]["recenttrades"];
     var style = window.getComputedStyle(this.parentElement.node(), null);
 
 
@@ -47,7 +47,7 @@ Cex.prototype.initVis = function(){
         .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
 
-    this.x = d3.scale.ordinal()
+    this.x = d3.time.scale()
               .range([0, this.width]);
 
     this.y = d3.scale.linear()
@@ -61,12 +61,14 @@ Cex.prototype.initVis = function(){
         .scale(this.y)
         .orient("left");
 
+    console.log(that.times)
     this.line = d3.svg.line()
         .x(function(d, i) { 
+            console.log(that.x(that.times[i]));
           return that.x(that.times[i]); 
         })
         .y(function(d) { 
-          return that.y(d.quantity); 
+          return that.y(d.price); 
         });
 
     this.svg.append("g")
@@ -98,10 +100,8 @@ Cex.prototype.updateVis = function(){
 
     var that = this;
     // updates scales
-    this.x.domain(that.times);
-    this.y.domain([0, d3.max(this.displayData, function(d) {
-      return d.quantity;
-    })]);
+    this.x.domain(d3.extent(that.displayData, function(d,i) { return that.times[i]; }));
+    this.y.domain(d3.extent(that.displayData, function(d) { return d.price; }));
 
     this.svg.append("path")
       .datum(this.displayData)
@@ -122,10 +122,10 @@ Cex.prototype.onSelectionChange = function (extent){
     d3.select('.y.axis').select('text').text(this.axis_label);
 
 
-    this.displayData = this.data[this.axis_label]["recenttrades"];
+   this.displayData = this.data[this.axis_label]["recenttrades"];
+   
 
-
-    this.updateVis();
+   this.updateVis();
 
 
 }

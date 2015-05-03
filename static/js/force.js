@@ -134,24 +134,30 @@ Force.prototype.makeForce = function(theGraph) {
       .call(this.drag)
 
   	
-
    this.link.
 		on('mouseover', function(d) {
-			d3.select(this).style({'stroke':'red', 'stroke-width':'15px'});
+			
+			d3.selectAll(".link").style({'opacity':'0.1'});
+			d3.select(this).style({'stroke':'red', 'stroke-width':'15px', 'opacity':'1'});
+
 			var name = d.source.name + '/' + d.target.name;
+		
 			$(that.eventHandler).trigger("selectionChanged", name);
+						
 				
 		})
 		.on('mouseout', function(d) {
 			
-			d3.select(this).style({
+			d3.selectAll('.link').style({
 				'stroke':'#008894',
-				'stroke-width':'2px'
+				'stroke-width':'2px',
+				'opacity':'1'
 			});
+
+
 		});
 
-
-
+	
 };
 
 /**
