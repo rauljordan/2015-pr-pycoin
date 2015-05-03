@@ -3,7 +3,7 @@
 {% block content %}
   <img src="{{url_for('static', filename='img/714.GIF')}}" style="width:200px;height:200;" class="loader centered">
 
-  <div class="row">
+  <div class="search">
     <div id="node-container" class="col s6" style="margin-top:50px;">
 
     </div>
@@ -72,17 +72,50 @@
         
     </div>
   </div>
-  <div class="row">
-        <div id="barchart-container" class="col s6" style="margin-bottom:50px;">
+  <div class="barcharts">
+        <div id="barchart-container" class="col s6" style="margin-bottom:50px;" data-step="2" data-intro="Get it, use it.">
 
         </div>
-        <div id="barchart-container2" class="col s6" style="margin-bottom:50px;">
+        <div id="barchart-container2" class="col s6" style="margin-bottom:50px;" data-step="1" data-intro="Get it, use it.">
 
         </div>
    </div>
-  
+
+  <script type="text/javascript">
+  $(function(){
+    var introguide = introJs();
+    // var startbtn   = $('#startdemotour');
+    
+    introguide.setOptions({
+      steps: [
+      {
+        element: '.search',
+        intro: 'search bar & comparison',
+        position: 'bottom'
+      },
+      {
+        element: '.nav-logo',
+        intro: 'force layout graph',
+        position: 'bottom'
+      },
+      {
+        element: '#barchart-container',
+        intro: 'linegraph 1',
+        position: 'bottom'
+      },
+      {
+        element: '#barchart-container2',
+        intro: 'linegraph 2',
+        position: 'bottom'
+      },
+      ]
+    });
+
+    introguide.start();
 
 
+  });
+  </script>       
 
   <script type="text/javascript">
     $(document).ready(function() {
