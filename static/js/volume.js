@@ -1,6 +1,6 @@
 
 
-Barchart = function(_parentElement, _marketData, _eventHandler){
+Volume = function(_parentElement, _marketData, _eventHandler){
     this.parentElement = _parentElement;
     this.data = _marketData;
     this.eventHandler = _eventHandler;
@@ -28,7 +28,7 @@ Barchart = function(_parentElement, _marketData, _eventHandler){
 /**
  * Method that sets up the SVG and the variables
  */
-Barchart.prototype.initVis = function(){
+Volume.prototype.initVis = function(){
 
     // constructs SVG layout
     this.svg = this.parentElement.append("svg")
@@ -47,7 +47,9 @@ Barchart.prototype.initVis = function(){
 
     this.xAxis = d3.svg.axis()
       .scale(this.x)
-      .ticks(6)
+      .tickFormat(function (d, i) {
+        return i % 10 == 0 ? d : "";
+      })
       .orient("bottom");
 
     this.yAxis = d3.svg.axis()
@@ -67,11 +69,9 @@ Barchart.prototype.initVis = function(){
         .attr("y", 6)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text(this.axis_label);
+        .text("Trade Volume " + this.axis_label);
         
 
-    // filter, aggregate, modify data
-    this.wrangleData(null);
 
     // call the update method
     this.updateVis();
@@ -79,22 +79,9 @@ Barchart.prototype.initVis = function(){
 
 
 /**
- * Method to wrangle the data. In this case it takes an options object
- * @param _filterFunction - a function that filters data or "null" if none
- */
-Barchart.prototype.wrangleData = function(_filterFunction){
-
-    return;
-
-
-}
-
-
-
-/**
  * the drawing function - should use the D3 selection, enter, exit
  */
-Barchart.prototype.updateVis = function(){
+Volume.prototype.updateVis = function(){
 
 
     var that = this;
@@ -109,9 +96,8 @@ Barchart.prototype.updateVis = function(){
         .call(this.xAxis)
         .selectAll("text")
         .style("text-anchor", "end")
-        .attr("transform", "translate(0,0)")
         .attr("transform", function(d){
-          return "rotate(-65) translate(0,-10)"
+          return "rotate(-65) translate(0,15)"
         });
 
     this.svg.select(".y.axis")
@@ -165,13 +151,9 @@ Barchart.prototype.updateVis = function(){
  * be defined here.
  * @param selection
  */
-Barchart.prototype.onSelectionChange = function (name){
+Volume.prototype.onSelectionChange = function (name){
 
-    /*
-    this.wrangleData(function(d){
-      return d.time >= selectionStart && d.time <= selectionEnd;
-    });
-    */
+   
    this.axis_label = name;
    d3.select('.y.axis').select('text').text(this.axis_label);
 
@@ -183,20 +165,5 @@ Barchart.prototype.onSelectionChange = function (name){
 } 
 
 
-/**
- * The aggregate function that creates the counts for each age for a given filter.
- * @param _filter - A filter can be, e.g.,  a function that is only true for data of a given time range
- * @returns {Array|*}
- */
-Barchart.prototype.filterAndAggregate = function(_filter){
-
-    // Set filter to a function that accepts all items
-    // ONLY if the parameter _filter is NOT null use this parameter
-    var filter = function(){return true;}
-    if (_filter != null){
-        filter = _filter;
-    }
-    var that = this;
-}
 
 
