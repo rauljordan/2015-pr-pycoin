@@ -15,7 +15,11 @@ Force = function(_parentElement, _nodeData, _eventHandler){
 
     this.margin = {top: 20, right: 50, bottom: 30, left: 20},
     this.width = parseInt(style.getPropertyValue('width')) - this.margin.left - this.margin.right;
+<<<<<<< HEAD
     this.height = 800 - this.margin.top - this.margin.bottom;
+=======
+    this.height = 1200 - this.margin.top - this.margin.bottom;
+>>>>>>> origin/claudia_branch
 
     this.initVis();
 }
@@ -162,13 +166,38 @@ Force.prototype.makeForce = function(theGraph) {
       .on("dblclick", this.dblclick)
       .call(this.drag)
 
+<<<<<<< HEAD
   this.node.append("text")
 	  .attr("dx", ".80em")
 	  .attr("dy", ".10em")
       .text(function(d) { return d.name; });
+=======
+  	
+   this.link.
+		on('mouseover', function(d) {
+			
+			d3.selectAll(".link").style({'opacity':'0.1'});
+			d3.select(this).style({'stroke':'red', 'stroke-width':'15px', 'opacity':'1'});
+
+			var name = d.source.name + '/' + d.target.name;
+		
+			$(that.eventHandler).trigger("selectionChanged", name);
+						
+				
+		})
+		.on('mouseout', function(d) {
+			
+			d3.selectAll('.link').style({
+				'stroke':'#008894',
+				'stroke-width':'2px',
+				'opacity':'1'
+			});
+>>>>>>> origin/claudia_branch
 
 
+		});
 
+	
 };
 
 /**
