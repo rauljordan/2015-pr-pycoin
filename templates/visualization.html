@@ -97,12 +97,11 @@
         var MyEventHandler = {};
         var force = new Force(d3.select("#node-container"), nodeData, MyEventHandler);
         var barchart = new Barchart(d3.select("#barchart-container"), marketData, MyEventHandler);
-
-        var barchart2 = new Barchart(d3.select("#barchart-container2"), marketData, MyEventHandler);
+        var barchart2 = new Cex(d3.select("#barchart-container2"), marketData, MyEventHandler);
 
         $(MyEventHandler).bind("selectionChanged", function(event, names){
             barchart.onSelectionChange(names);
-            barchart2.onSelectionChange(names);
+            //barchart2.onSelectionChange(names);
         });
       };
 
