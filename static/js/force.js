@@ -61,9 +61,17 @@ Force.prototype.initVis = function(){
 		
 	})
 
+	this.link = this.svg.selectAll(".link");
+    this.node = this.svg.selectAll(".node");
+
+
+	this.svg.selectAll('text.label').attr("fill", "black")
+
+	// Makes the force layout
+	this.makeForce(this.graph);
 	
 
-    
+    /*
     this.link = this.svg.selectAll(".link")
               		.data(this.graph.links);
 
@@ -89,32 +97,79 @@ Force.prototype.initVis = function(){
 	              
               	  
 
-	this.node.append("circle")
+	this.svg.selectAll('text.label').attr("fill", "black")
+
+	this.force = d3.layout.force()
+	    .size([this.width, this.height])
+	    .charge(-400)
+	    .linkDistance(40)
+	    .on('tick', this.tick)
+
+
+	this.drag = this.force.drag()
+    	.on("dragstart", this.dragstart);
+
+   	this.force
+      .nodes(this.graph.nodes)
+      .links(this.graph.links)
+      .start();
+
+    this.node.append("circle")
 	    .attr("r", 7)
 
 	this.node.append("text")
 				  .attr("dx", ".80em")
 				  .attr("dy", ".10em")
 		          .text(function(d) { return d.name; })
-
-	this.svg.selectAll('text.label').attr("fill", "black")
-
-	this.force = d3.layout.force()
-	    .size([this.width, this.height])
-	    .charge(-50)
-	    .linkDistance(10)
-	    .gravity(0.1);
-
-	this.forceLayout();
-
-	this.force
-	    .on("tick", this.graph_update(0))
-	    .on("start", function(d) {})
-	    .on("end", function(d) {})
-	    .start();
-  
+		          .on('dblclick', this.dblclick)
+		          .call('drag');
+  	*/
 };
 
+
+Force.prototype.makeForce = function(theGraph) {
+	var that = this;
+	this.force = d3.layout.force()
+	    .size([this.width, this.height])
+	    .charge(-100)
+	    .linkDistance(300)
+	    .on("tick", function() {
+	    	  that.link.attr("x1", function(d) { return d.source.x; })
+			      .attr("y1", function(d) { return d.source.y; })
+			      .attr("x2", function(d) { return d.target.x; })
+			      .attr("y2", function(d) { return d.target.y; });
+
+			  that.node.attr("cx", function(d) { return d.x; })
+			      .attr("cy", function(d) { return d.y; });
+	    });
+
+	this.drag = this.force.drag()
+    	.on("dragstart", this.dragstart);
+
+    this.force
+      .nodes(theGraph.nodes)
+      .links(theGraph.links)
+      .start();
+
+  this.link = this.link.data(theGraph.links)
+      .enter().append("line")
+      .attr("class", "link");
+
+  this.node = this.node.data(theGraph.nodes)
+    .enter().append("circle")
+      .attr("class", "node")
+      .attr("r", 12)
+      .on("dblclick", this.dblclick)
+      .call(this.drag)
+
+  this.node.append("text")
+	  .attr("dx", ".80em")
+	  .attr("dy", ".10em")
+      .text(function(d) { return d.name; });
+
+
+
+};
 
 /**
  * the drawing function - should use the D3 selection, enter, exit
@@ -128,37 +183,14 @@ Force.prototype.dragstart = function(d) {
   	d3.select(this).classed("fixed", d.fixed = true);
 }
 
-Force.prototype.forceLayout = function(){
 
-    this.force.nodes(this.graph.nodes)
-      .links(this.graph.links)
-      .start();
+Force.prototype.tick = function() {
+  this.link.attr("x1", function(d) { return d.source.x; })
+      .attr("y1", function(d) { return d.source.y; })
+      .attr("x2", function(d) { return d.target.x; })
+      .attr("y2", function(d) { return d.target.y; });
 
-    var drag = force.drag()
-      .on("dragstart", dragstart);
-
-    this.node = 
-      .on("dblclick", dblclick)
-      .call(drag);
-
+  this.node.attr("cx", function(d) { return d.x; })
+      .attr("cy", function(d) { return d.y; });
 };
-
-Force.prototype.graph_update = function(duration) {
-
-	this.link.transition().duration(duration)
-      .attr("x1", function(d) { return d.target.x; })
-      .attr("y1", function(d) { return d.target.y; })
-      .attr("x2", function(d) { return d.source.x; })
-      .attr("y2", function(d) { return d.source.y; });
-
-  	this.node.transition().duration(duration)
-      .attr("transform", function(d) {
-        return "translate("+d.x+","+d.y+")"; 
-      });
-};
-
-Force.prototype.tick = function(d) {
-	this.graph_update(0);
-};
-
 

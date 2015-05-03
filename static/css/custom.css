@@ -11,49 +11,17 @@
 }
 
 .link {
-  stroke: #008894;
-  stroke-width: 2px;
+  stroke: #000;
+  stroke-width: 1.5px;
 }
 
 .node {
-  fill: #ffab00;
-  stroke:#000000;
-  stroke-width:2px;
+  cursor: move;
+  fill: #ccc;
+  stroke: #000;
+  stroke-width: 1.5px;
 }
 
-
-.node:hover,
-.node--source,
-.node--target {
-  font-weight: 700;
-}
-
-.not--selected {
-  opacity:.1;
-}
-
-.selected {
-  opacity:1;
-}
-
-.node--source {
-  fill: #2ca02c;
-}
-
-.node--target {
-  fill: #d62728;
-}
-
-.link--source,
-.link--target {
-  stroke-opacity: 1;
-  stroke-width: 2px;
-}
-
-.link--source {
-  stroke: #d62728;
-}
-
-.link--target {
-  stroke: #2ca02c;
+.node.fixed {
+  fill: #f00;
 }
