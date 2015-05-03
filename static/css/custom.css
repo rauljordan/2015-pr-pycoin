@@ -11,17 +11,17 @@
 }
 
 .link {
-  stroke: #000;
+  stroke: #008894;
   stroke-width: 1.5px;
 }
 
 .node {
   cursor: move;
-  fill: #ccc;
+  fill: #ffab00;
   stroke: #000;
   stroke-width: 1.5px;
 }
 
 .node.fixed {
-  fill: #f00;
+  fill: #008894;
 }
