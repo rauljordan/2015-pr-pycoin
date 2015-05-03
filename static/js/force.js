@@ -126,16 +126,14 @@ Force.prototype.makeForce = function(theGraph) {
       .attr("class", "link");
 
   this.node = this.node.data(theGraph.nodes)
-    .enter().append("circle")
+      .enter()
+      .append("circle")
       .attr("class", "node")
       .attr("r", this.radius - 0.75)
       .on("dblclick", this.dblclick)
       .call(this.drag)
 
-  this.node.append("text")
-	  .attr("dx", ".80em")
-	  .attr("dy", ".10em")
-      .text(function(d) { return d.name; });
+  	
 
    this.link.
 		on('mouseover', function(d) {
@@ -146,7 +144,10 @@ Force.prototype.makeForce = function(theGraph) {
 		})
 		.on('mouseout', function(d) {
 			
-			d3.select(this).style({'stroke':'#008894','stroke-width':'2px'});
+			d3.select(this).style({
+				'stroke':'#008894',
+				'stroke-width':'2px'
+			});
 		});
 
 
