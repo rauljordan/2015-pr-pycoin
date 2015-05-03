@@ -15,7 +15,7 @@ Force = function(_parentElement, _nodeData, _eventHandler){
 
     this.margin = {top: 20, right: 50, bottom: 10, left: 20},
     this.width = parseInt(style.getPropertyValue('width')) - this.margin.left - this.margin.right;
-    this.height = 500 - this.margin.top - this.margin.bottom;
+    this.height = 1200 - this.margin.top - this.margin.bottom;
 
     this.initVis();
 }
