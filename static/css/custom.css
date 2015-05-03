@@ -13,6 +13,7 @@
 .link {
   stroke: #008894;
   stroke-width: 1.5px;
+  opacity:1;
 }
 
 .node {
@@ -24,4 +25,9 @@
 
 .node.fixed {
   fill: #008894;
+}
+#barchart-container2 path{
+  fill: none;
+  stroke: black;
+  stroke-width: 2px;
 }

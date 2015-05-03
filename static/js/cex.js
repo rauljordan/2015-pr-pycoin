@@ -11,13 +11,22 @@ Cex = function(_parentElement, _data, _eventHandler){
     this.parentElement = _parentElement;
     this.data = _data;
     this.eventHandler = _eventHandler;
-    this.displayData = [];
+    this.displayData = this.data["CTM/LTC"]["recenttrades"];
     var style = window.getComputedStyle(this.parentElement.node(), null);
 
 
     this.margin = {top: 20, right: 30, bottom: 30, left: 60},
     this.width = parseInt(style.getPropertyValue('width')) - this.margin.left - this.margin.right,
     this.height = 400 - this.margin.top - this.margin.bottom;
+
+    var that = this;
+  
+    this.times = d3.range(0, that.displayData.length).map(function(i) {
+      return new Date(that.displayData[i]["time"]);
+    });
+
+
+    this.axis_label = "LTC/BTC";
 
     this.initVis();
 }
@@ -37,38 +46,39 @@ Cex.prototype.initVis = function(){
         .append("g")
         .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
-    // creates axis and scales
-    this.x = d3.scale.linear()
-      .range([0, this.width]);
+
+    this.x = d3.time.scale()
+              .range([0, this.width]);
 
     this.y = d3.scale.linear()
-      .range([this.height, 0]);
+        .range([this.height, 0]);
 
     this.xAxis = d3.svg.axis()
-      .scale(this.x)
-      .orient("bottom");
+        .scale(this.x)
+        .orient("bottom");
 
     this.yAxis = d3.svg.axis()
-      .scale(this.y)
-      .orient("left");
+        .scale(this.y)
+        .orient("left");
 
-    this.area = d3.svg.area()
-      .interpolate("monotone")
-      .x(function(d) { return that.x(d.time); })
-      .y0(this.height)
-      .y1(function(d) { return that.y(d.money); });
-
-    this.brush = d3.svg.brush()
-      .on("brush", function(){
-        console.log(that.brush.extent());
-      });
+    console.log(that.times)
+    this.line = d3.svg.line()
+        .x(function(d, i) { 
+            console.log(that.x(that.times[i]));
+          return that.x(that.times[i]); 
+        })
+        .y(function(d) { 
+          return that.y(d.price); 
+        });
 
     this.svg.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + this.height + ")")
+        .call(this.xAxis)
 
     this.svg.append("g")
         .attr("class", "y axis")
+        .call(this.yAxis)
         .append("text")
         .attr("transform", "rotate(-90)")
         .attr("y", 6)
@@ -76,10 +86,6 @@ Cex.prototype.initVis = function(){
         .style("text-anchor", "end")
         .text("USD Bitcoin");
 
-    this.svg.append("g")
-      .attr("class", "brush");
-
-    this.wrangleData();
 
     this.updateVis();
 }
@@ -87,49 +93,20 @@ Cex.prototype.initVis = function(){
 
 
 /**
- * Method to wrangle the data. In this case it takes an options object
-  */
-Cex.prototype.wrangleData = function(extent){
-
-    this.displayData = this.data;
-
-}
-
-/**
  * the drawing function - should use the D3 selection, enter, exit
  * @param _options -- only needed if different kinds of updates are needed
  */
 Cex.prototype.updateVis = function(){
 
-    this.x.domain(d3.extent(this.displayData, function(d) { return d.time; }));
-    this.y.domain(d3.extent(this.displayData, function(d) { return d.money; }));
+    var that = this;
+    // updates scales
+    this.x.domain(d3.extent(that.displayData, function(d,i) { return that.times[i]; }));
+    this.y.domain(d3.extent(that.displayData, function(d) { return d.price; }));
 
-    this.svg.select(".x.axis")
-        .call(this.xAxis);
-
-    this.svg.select(".y.axis")
-        .call(this.yAxis)
-
-    var path = this.svg.selectAll(".area")
-      .data([this.displayData])
-
-    path.enter()
-      .append("path")
-      .attr("class", "area");
-
-    path
-      .transition()
-      .attr("d", this.area);
-
-    path.exit()
-      .remove();
-
-    this.brush.x(this.x);
-    this.svg.select(".brush")
-        .call(this.brush)
-        .selectAll("rect")
-        .style("fill", "#008894")
-        .attr("height", this.height);
+    this.svg.append("path")
+      .datum(this.displayData)
+      .attr("class", "line")
+      .attr("d", this.line);
 
 }
 
@@ -141,9 +118,14 @@ Cex.prototype.updateVis = function(){
  */
 Cex.prototype.onSelectionChange = function (extent){
 
-    this.wrangleData(extent);
+    this.axis_label = name;
+    d3.select('.y.axis').select('text').text(this.axis_label);
 
-    this.updateVis();
+
+   this.displayData = this.data[this.axis_label]["recenttrades"];
+   
+
+   this.updateVis();
 
 
 }
