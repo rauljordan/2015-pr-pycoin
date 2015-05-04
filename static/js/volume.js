@@ -176,13 +176,11 @@ Volume.prototype.onSelectionChange = function (names){
         this.axis_label = first_combination;
         d3.select('.y.axis').select('text').text(this.axis_label);
 
-      
-
         var avg = d3.mean(this.displayData, function(d) { return d.price });
-        $('#average-price').text('$' + avg);
+        $('#average-price').text('$' + parseFloat(avg).toFixed(9));
 
         var volume = d3.sum(this.displayData, function(d) { return d.price });
-        $('#total-volume').text('$' + volume);
+        $('#total-volume').text('$' + parseFloat(volume).toFixed(9));
    }   
    
 
