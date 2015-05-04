@@ -114,13 +114,20 @@ Cex.prototype.updateVis = function(){
  * be defined here.
  * @param selection
  */
-Cex.prototype.onSelectionChange = function (name){
+Cex.prototype.onSelectionChange = function (names){
 
-    this.axis_label = name;
-    d3.select('.y.axis').select('text').text(this.axis_label);
+   // this.axis_label = name;
+   // d3.select('.y.axis').select('text').text(this.axis_label);
 
-   this.displayData = this.data[this.axis_label]["recenttrades"];
-   
+   var first_combination = names.first + '/' + names.second;
+   var second_combination = names.second + '/' + names.first;
+
+   if (_.isUndefined(this.data[first_combination])) {
+        this.displayData = this.data[second_combination]["recenttrades"];
+   }
+   else {
+        this.displayData = this.data[first_combination]["recenttrades"];
+   }   
 
    this.updateVis();
 

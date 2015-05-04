@@ -151,14 +151,24 @@ Volume.prototype.updateVis = function(){
  * be defined here.
  * @param selection
  */
-Volume.prototype.onSelectionChange = function (name){
+Volume.prototype.onSelectionChange = function (names){
 
    
-   this.axis_label = name;
-   d3.select('.y.axis').select('text').text(this.axis_label);
+   
 
-   //console.log(this.data[this.axis_label]["recenttrades"]);
-   //this.displayData = this.data[this.axis_label]["recenttrades"];
+   var first_combination = names.first + '/' + names.second;
+   var second_combination = names.second + '/' + names.first;
+
+   if (_.isUndefined(this.data[first_combination])) {
+        this.displayData = this.data[second_combination]["recenttrades"];
+        this.axis_label = second_combination;
+        d3.select('.y.axis').select('text').text(this.axis_label);
+   }
+   else {
+        this.displayData = this.data[first_combination]["recenttrades"];
+        this.axis_label = first_combination;
+        d3.select('.y.axis').select('text').text(this.axis_label);
+   }   
    
 
    this.updateVis();

@@ -169,17 +169,12 @@ Force.prototype.makeForce = function(theGraph) {
 			d3.selectAll(".link").style({'opacity':'0.1'});
 			d3.select(this).style({'stroke':'red', 'stroke-width':'15px', 'opacity':'1'});
 
-			var name = d.source.name + '/' + d.target.name;
+			var names = {
+				first: d.source.name,
+				second: d.target.name
+			}
 
-			if (_.isUndefined(that.data[name])) {
-				var other_name = d.target.name + '/' + d.source.name; 
-				$(that.eventHandler).trigger("selectionChanged", other_name);
-			}
-			else {
-				$(that.eventHandler).trigger("selectionChanged", name);
-			}
-		
-			
+			$(that.eventHandler).trigger("selectionChanged", names);
 						
 				
 		})
