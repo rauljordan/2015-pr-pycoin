@@ -73,47 +73,49 @@
     </div>
   </div>
         
-  
-
-
-
   <script type="text/javascript">
     $(document).ready(function() {
       $('.page-footer').hide();
       
 
       var introguide = introJs();
-      introguide.setOptions({'tooltipPosition': 'auto', 'showProgress': 'true'});
+      introguide.setOptions({'tooltipPosition': 'auto', 'showProgress': 'true', 'showStepNumbers': 'false', 
+       'showBullets': 'true', "showButtons": "false"});
       introguide.setOptions({
         steps: [
         {
-          intro: 'Pycoin is a way to see how the world\'s cryptocurrencies are related',
+          intro: 'Pycoin is a way to see how the world\'s cryptocurrencies interact with each other',
           position: 'center'
         },
         {
           element: '#image-container',
-          intro: 'These are the currently selected cryptocurrencies',
+          intro: 'These are the icons of currently selected cryptocurrencies',
           position: 'bottom'
         },
         {
           element: '#search-container',
-          intro: 'Use this tool to individually select the currencies you are looking for',
+          intro: 'Use these drop-down menus to individually select currencies',
           position: 'top'
         },
         {
           element: '#node-container',
-          intro: 'Our visualization of the cryptocurrencies: \n select an edge',
-          position: 'middle'
+          intro: 'A graph visualization of cryptocurrencies: \n You can click and drag nodes to pin them down',
+          position: 'top'
+        },
+        {
+          element: '#node-container',
+          intro: 'Hover over an edge between two nodes to update the currently selected nodes',
+          position: 'bottom'
         },
         {
           element: '#barchart-container',
-          intro: 'trade volume between selected currencies',
+          intro: 'This graph shows trade volume between selected currencies',
           position: 'left'
         },
         {
           element: '#barchart-container2',
-          intro: 'price between selected currencies',
-          position: 'left'
+          intro: 'This graph shows price fluctuations between selected currencies',
+          position: 'top'
         },
         ]
       });
