@@ -83,7 +83,6 @@ Force.prototype.makeForce = function(theGraph) {
 	  .attr('class', 'd3-tip')
 	  .offset([-10, 0])
 	  .html(function(d) {
-	  	console.log(d);
 	    return "<strong>Name:</strong> <span style='color:red'>" + d.name + "</span> <br/> <strong>Traded With Coins:</strong> <span style='color:red'>" + d.linked_coins.length + "</span>";
 	  });
 
@@ -171,8 +170,16 @@ Force.prototype.makeForce = function(theGraph) {
 			d3.select(this).style({'stroke':'red', 'stroke-width':'15px', 'opacity':'1'});
 
 			var name = d.source.name + '/' + d.target.name;
+
+			if (_.isUndefined(that.data[name])) {
+				var other_name = d.target.name + '/' + d.source.name; 
+				$(that.eventHandler).trigger("selectionChanged", other_name);
+			}
+			else {
+				$(that.eventHandler).trigger("selectionChanged", name);
+			}
 		
-			$(that.eventHandler).trigger("selectionChanged", name);
+			
 						
 				
 		})
