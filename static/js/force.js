@@ -7,6 +7,7 @@
  * @constructor
  */
 Force = function(_parentElement, _nodeData, _eventHandler){
+
     this.parentElement = _parentElement;
     this.data = _nodeData;
     this.eventHandler = _eventHandler;
@@ -18,6 +19,7 @@ Force = function(_parentElement, _nodeData, _eventHandler){
     this.height = 1200 - this.margin.top - this.margin.bottom;
 
     this.initVis();
+    
 }
 
 
@@ -75,7 +77,19 @@ Force.prototype.initVis = function(){
 
 
 Force.prototype.makeForce = function(theGraph) {
+
 	var that = this;
+
+	this.tip = d3.tip()
+	  .attr('class', 'd3-tip')
+	  .offset([-10, 0])
+	  .html(function(d) {
+	  	console.log(d);
+	    return "<strong>Name:</strong> <span style='color:red'>" + d.name + "</span> <br/> <strong>Traded With Coins:</strong> <span style='color:red'>" + d.linked_coins.length + "</span>";
+	  });
+
+	this.svg.call(this.tip);
+
 	this.force = d3.layout.force()
 	    .size([this.width, this.height])
 	    .gravity(0.1)
@@ -173,6 +187,10 @@ Force.prototype.makeForce = function(theGraph) {
 
 	    $(that.eventHandler).trigger("selectionChanged", name);
 	});
+
+	this.node
+		.on('mouseover', this.tip.show)
+		.on('mouseout',this.tip.hide);
 };
 
 /**
