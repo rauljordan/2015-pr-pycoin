@@ -83,7 +83,6 @@ Force.prototype.makeForce = function(theGraph) {
 	  .attr('class', 'd3-tip')
 	  .offset([-10, 0])
 	  .html(function(d) {
-	  	console.log(d);
 	    return "<strong>Name:</strong> <span style='color:red'>" + d.name + "</span> <br/> <strong>Traded With Coins:</strong> <span style='color:red'>" + d.linked_coins.length + "</span>";
 	  });
 
@@ -170,9 +169,12 @@ Force.prototype.makeForce = function(theGraph) {
 			d3.selectAll(".link").style({'opacity':'0.1'});
 			d3.select(this).style({'stroke':'red', 'stroke-width':'15px', 'opacity':'1'});
 
-			var name = d.source.name + '/' + d.target.name;
-		
-			$(that.eventHandler).trigger("selectionChanged", name);
+			var names = {
+				first: d.source.name,
+				second: d.target.name
+			}
+
+			$(that.eventHandler).trigger("selectionChanged", names);
 						
 				
 		})
@@ -221,12 +223,3 @@ Force.prototype.dragstart = function(d) {
 }
 
 
-Force.prototype.tick = function() {
-  this.link.attr("x1", function(d) { return d.source.x; })
-      .attr("y1", function(d) { return d.source.y; })
-      .attr("x2", function(d) { return d.target.x; })
-      .attr("y2", function(d) { return d.target.y; });
-
-  this.node.attr("cx", function(d) { return d.x; })
-      .attr("cy", function(d) { return d.y; });
-};
