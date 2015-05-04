@@ -114,11 +114,10 @@ Cex.prototype.updateVis = function(){
  * be defined here.
  * @param selection
  */
-Cex.prototype.onSelectionChange = function (extent){
+Cex.prototype.onSelectionChange = function (name){
 
     this.axis_label = name;
     d3.select('.y.axis').select('text').text(this.axis_label);
-
 
    this.displayData = this.data[this.axis_label]["recenttrades"];
    

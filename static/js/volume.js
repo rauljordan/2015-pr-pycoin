@@ -157,7 +157,7 @@ Volume.prototype.onSelectionChange = function (name){
    this.axis_label = name;
    d3.select('.y.axis').select('text').text(this.axis_label);
 
-   console.log(name);
+   //console.log(this.data[this.axis_label]["recenttrades"]);
    //this.displayData = this.data[this.axis_label]["recenttrades"];
    
 
