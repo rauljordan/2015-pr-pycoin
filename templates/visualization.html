@@ -84,39 +84,40 @@
       
 
       var introguide = introJs();
-    
+      introguide.setOptions({'tooltipPosition': 'auto', 'showProgress': 'true'});
       introguide.setOptions({
         steps: [
         {
+          intro: 'Pycoin is a way to see how the world\'s cryptocurrencies are related',
+          position: 'center'
+        },
+        {
           element: '#image-container',
-          intro: 'View All Cryptocurrencies',
+          intro: 'These are the currently selected cryptocurrencies',
           position: 'bottom'
         },
         {
           element: '#search-container',
-          intro: 'Search for Cryptos',
-          position: 'top'
-        },
-        {
-          element: '#barchart-container',
-          intro: 'linegraph 1',
-          position: 'top'
-        },
-        {
-          element: '#barchart-container2',
-          intro: 'linegraph 2',
+          intro: 'Use this tool to individually select the currencies you are looking for',
           position: 'top'
         },
         {
           element: '#node-container',
-          intro: 'force layout graph',
-          position: 'top'
-        }
+          intro: 'Our visualization of the cryptocurrencies: \n select an edge',
+          position: 'middle'
+        },
+        {
+          element: '#barchart-container',
+          intro: 'trade volume between selected currencies',
+          position: 'left'
+        },
+        {
+          element: '#barchart-container2',
+          intro: 'price between selected currencies',
+          position: 'left'
+        },
         ]
       });
-      
-      
-      
 
       var nodeData = [];
       var marketData = [];
