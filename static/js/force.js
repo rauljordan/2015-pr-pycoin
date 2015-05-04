@@ -1,4 +1,3 @@
-
 /**
  * Force object for Pycoin
  * @param _parentElement -- the HTML or SVG element (D3 node) to which to attach the vis
@@ -15,8 +14,8 @@ Force = function(_parentElement, _nodeData, _eventHandler){
     var style = window.getComputedStyle(this.parentElement.node(), null);
 
     this.margin = {top: 20, right: 50, bottom: 10, left: 20},
-    this.width = parseInt(style.getPropertyValue('width')) - this.margin.left - this.margin.right;
-    this.height = 1200 - this.margin.top - this.margin.bottom;
+    this.width = parseInt(style.getPropertyValue('width')) - this.margin.left - this.margin.right;
+    this.height = 1200 - this.margin.top - this.margin.bottom;
 
     this.initVis();
     
@@ -104,10 +103,18 @@ Force.prototype.makeForce = function(theGraph) {
 			 
 			  that.node.attr("cx", function(d) { 
 
-			  		if (d.name == "BTC" || d.name == "LTC") {
+			  		if (d.name == "BTC") {
 			  			d3.select(this).classed("fixed", d.fixed = true);
-			  			return d.x;
+			  			return d.x = 225;
 			  		}
+			  		else if (d.name == "LTC") {
+			  			d3.select(this).classed("fixed", d.fixed = true);
+			  			return d.x = 250;
+			  		}
+			  		else if (d.name == "XRP") {
+			  			d3.select(this).classed("fixed", d.fixed = true);
+			  			return d.x = 275;
+			  		}			  		
 			  		else {
 			  			return d.x = Math.max(that.radius, 
 			  				Math.min(that.width - that.radius, d.x)); 
@@ -115,13 +122,22 @@ Force.prototype.makeForce = function(theGraph) {
 			  		
 			  	})
         		.attr("cy", function(d) { 
-        			if (d.name == "BTC" || d.name == "LTC") {
+        			
+			  		if (d.name == "BTC") {
 			  			d3.select(this).classed("fixed", d.fixed = true);
-			  			return d.y;
-			  		} 
+			  			return d.y = 150;
+			  		}
+			  		else if (d.name == "LTC") {
+			  			d3.select(this).classed("fixed", d.fixed = true);
+			  			return d.y = 50;
+			  		}
+			  		else if (d.name == "XRP") {
+			  			d3.select(this).classed("fixed", d.fixed = true);
+			  			return d.y = 100;
+			  		}			  		
 			  		else {
 			  			return d.y = Math.max(that.radius, 
-        				Math.min(that.height - that.radius, d.y)); 
+			  				Math.min(that.width - that.radius, d.y)); 
 			  		}
         		 
         		});
@@ -157,7 +173,6 @@ Force.prototype.makeForce = function(theGraph) {
 			var name = d.source.name + '/' + d.target.name;
 		
 			$(that.eventHandler).trigger("selectionChanged", name);
-
 						
 				
 		})
@@ -215,4 +230,3 @@ Force.prototype.tick = function() {
   this.node.attr("cx", function(d) { return d.x; })
       .attr("cy", function(d) { return d.y; });
 };
-
