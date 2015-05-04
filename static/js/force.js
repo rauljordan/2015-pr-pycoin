@@ -144,15 +144,6 @@ Force.prototype.makeForce = function(theGraph) {
 		
 			$(that.eventHandler).trigger("selectionChanged", name);
 
-
-			$("#img1").html('<h1>Hello World </h1>');
-			$("#img2").html('');
-
-			var src1 = "{{url_for('static', filename='img/coins/" + d.source.name + ".png')}}";
-			var src2 = "{{url_for('static', filename='img/coins/" + d.target.name + ".png')}}";
-			$('#img1').html('<img src=' + src1 + ' class="activator">')
-			$('#img2').html('<img src=' + src2 + ' class="activator">')
-
 						
 				
 		})
@@ -167,7 +158,21 @@ Force.prototype.makeForce = function(theGraph) {
 
 		});
 
-	
+	$('#first-select').change(function(event) {
+		var str1 = "";
+		var str2 = "";
+	    $( "#first-select option:selected" ).each(function() {
+	      str1 += $(this).text() + " ";
+	    });
+
+	    $( "#second-select option:selected" ).each(function() {
+	      str2 += $(this).text() + " ";
+	    });
+
+	    var name = str1 + '/' + str2;
+
+	    $(that.eventHandler).trigger("selectionChanged", name);
+	});
 };
 
 /**
