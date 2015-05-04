@@ -9,10 +9,10 @@
     </div>
     <div class="col s6" style="margin-top:50px;">
 
-      <div class="row" style="margin-left:170px;z-index:100;position:relative;">
+      <div class="row" style="margin-left:170px;z-index:100;position:relative;" id="image-container">
         <div class="col s4">
           <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
+            <div id="img1" class="card-image waves-effect waves-block waves-light">
               <img class="activator" src="{{url_for('static', filename='img/coins/BTC.png')}}">
             </div>
             <div class="card-content">
@@ -23,10 +23,10 @@
               <p>Here is some more information about this product that is only revealed once clicked on.</p>
             </div>
           </div>
-        </div>
+        </div>  
         <div class="col s4">
           <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
+            <div  id="img2" class="card-image waves-effect waves-block waves-light">
               <img class="activator" src="{{url_for('static', filename='img/coins/LTC.png')}}">
             </div>
             <div class="card-content">
@@ -42,23 +42,20 @@
 
       </div>
 
-      <div class="row">
+      <div class="row" id="search-container">
         <div class="input-field col s6">
-          <select style="position:relative;z-index:10000;">
-            <option value="" disabled selected>Choose the Coin</option>
-            <option value="1">BTC</option>
-            <option value="2">LTC</option>
-            <option value="3">XTC</option>
+          <select style="position:relative;z-index:10000;" id="first-select">
+            <option value="BTC" selected>BTC</option>
+            <option value="LTC" disabled>LTC</option>
+            
           </select>
           <label>Trading From</label>
         </div>
 
         <div class="input-field col s6">
-          <select style="position:relative;z-index:10000;">
-            <option value="" disabled selected>Choose the Coin</option>
-            <option value="1">BTC</option>
-            <option value="2">LTC</option>
-            <option value="3">XTC</option>
+          <select style="position:relative;z-index:10000;" id="second-select">
+            <option value="BTC" disabled>BTC</option>
+            <option value="LTC" selected>LTC</option>
           </select>
           <label>Trading To</label>
         </div>
@@ -83,29 +80,41 @@
   <script type="text/javascript">
     $(document).ready(function() {
       $('.page-footer').hide();
-      $('select').material_select();
+      
 
       var introguide = introJs();
     
       introguide.setOptions({
         steps: [
         {
-          element: '#node-container',
-          intro: 'force layout graph',
+          element: '#image-container',
+          intro: 'View All Cryptocurrencies',
           position: 'bottom'
+        },
+        {
+          element: '#search-container',
+          intro: 'Search for Cryptos',
+          position: 'top'
         },
         {
           element: '#barchart-container',
           intro: 'linegraph 1',
-          position: 'bottom'
+          position: 'top'
         },
         {
           element: '#barchart-container2',
           intro: 'linegraph 2',
-          position: 'bottom'
+          position: 'top'
         },
+        {
+          element: '#node-container',
+          intro: 'force layout graph',
+          position: 'top'
+        }
         ]
       });
+      
+      
       
 
       var nodeData = [];
@@ -123,6 +132,27 @@
             volume.onSelectionChange(names);
             price.onSelectionChange(names);
         });
+
+        var coinNames = Object.keys(nodeData).sort();
+        for (var coin in coinNames) {
+            
+            if (coin != "BTC" && coin != "LTC") {
+              $('#first-select')
+                  .append($("<option></option>")
+                  .attr("value",coinNames[coin])
+                  .text(coinNames[coin])); 
+
+              $('#second-select')
+                  .append($("<option></option>")
+                  .attr("value",coinNames[coin])
+                  .text(coinNames[coin])); 
+            }
+            
+
+        }
+
+        $('select').material_select();
+
       };
 
       var dataLoaded = function(error, _nodeData, _marketData) {
@@ -132,6 +162,8 @@
 
           nodeData = _nodeData;
           marketData = _marketData;
+
+
 
           initVis();
         }

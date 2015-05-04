@@ -61,10 +61,8 @@ Cex.prototype.initVis = function(){
         .scale(this.y)
         .orient("left");
 
-    console.log(that.times)
     this.line = d3.svg.line()
         .x(function(d, i) { 
-            console.log(that.x(that.times[i]));
           return that.x(that.times[i]); 
         })
         .y(function(d) { 
