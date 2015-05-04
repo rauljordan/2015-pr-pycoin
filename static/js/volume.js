@@ -170,19 +170,34 @@ Volume.prototype.onSelectionChange = function (names){
         var volume = d3.sum(this.displayData, function(d) { return d.price });
         $('#total-volume').text('$' + volume);
 
+        // Changes the images
+        $("#first-image").attr('src', "img/coins/" + names.second + ".png");
+        $("#first-name").text(names.second);
+
+        $("#second-image").attr('src', "img/coins/" + names.first + ".png");
+        $("#second-name").text(names.first);
+        
+
    }
    else {
         this.displayData = this.data[first_combination]["recenttrades"];
         this.axis_label = first_combination;
         d3.select('.y.axis').select('text').text(this.axis_label);
 
-      
 
         var avg = d3.mean(this.displayData, function(d) { return d.price });
         $('#average-price').text('$' + avg);
 
         var volume = d3.sum(this.displayData, function(d) { return d.price });
         $('#total-volume').text('$' + volume);
+
+        // Changes the images
+        $("#first-image").attr('src', "img/coins/" + names.first + ".png");
+        $("#first-name").text(names.first);
+
+        $("#second-image").attr('src', "img/coins/" + names.second + ".png");
+        $("#second-name").text(names.second);
+
    }   
    
 
