@@ -105,17 +105,6 @@ Force.prototype.makeForce = function(theGraph) {
 
 			  		if (d.name == "BTC") {
 			  			d3.select(this).classed("fixed", d.fixed = true);
-<<<<<<< HEAD
-			  			return 225;
-			  		}
-			  		else if (d.name == "LTC") {
-			  			d3.select(this).classed("fixed", d.fixed = true);
-			  			return 250;
-			  		}
-			  		else if (d.name == "XRP") {
-			  			d3.select(this).classed("fixed", d.fixed = true);
-			  			return 275;
-=======
 			  			return d.x;
 			  		}
 			  		else if (d.name == "LTC") {
@@ -125,7 +114,6 @@ Force.prototype.makeForce = function(theGraph) {
 			  		else if (d.name == "XRP") {
 			  			d3.select(this).classed("fixed", d.fixed = true);
 			  			return d.x;
->>>>>>> 864dc0e9ac5ecf82e42ae15add24bdc9f8e7efe7
 			  		}			  		
 			  		else {
 			  			return d.x = Math.max(that.radius, 
@@ -137,17 +125,6 @@ Force.prototype.makeForce = function(theGraph) {
         			
 			  		if (d.name == "BTC") {
 			  			d3.select(this).classed("fixed", d.fixed = true);
-<<<<<<< HEAD
-			  			return 150;
-			  		}
-			  		else if (d.name == "LTC") {
-			  			d3.select(this).classed("fixed", d.fixed = true);
-			  			return 50;
-			  		}
-			  		else if (d.name == "XRP") {
-			  			d3.select(this).classed("fixed", d.fixed = true);
-			  			return 100;
-=======
 			  			return d.y;
 			  		}
 			  		else if (d.name == "LTC") {
@@ -157,7 +134,6 @@ Force.prototype.makeForce = function(theGraph) {
 			  		else if (d.name == "XRP") {
 			  			d3.select(this).classed("fixed", d.fixed = true);
 			  			return d.y;
->>>>>>> 864dc0e9ac5ecf82e42ae15add24bdc9f8e7efe7
 			  		}			  		
 			  		else {
 			  			return d.y = Math.max(that.radius, 
@@ -196,7 +172,7 @@ Force.prototype.makeForce = function(theGraph) {
 
 			var name = d.source.name + '/' + d.target.name;
 		
-			$(that.eventHandler).trigger("selectionChanged", name); 
+			$(that.eventHandler).trigger("selectionChanged", name);
 						
 				
 		})
