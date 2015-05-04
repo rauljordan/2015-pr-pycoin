@@ -91,49 +91,52 @@
     </div>
   </div>
         
-  
-
-
-
   <script type="text/javascript">
     $(document).ready(function() {
       $('.page-footer').hide();
       
 
       var introguide = introJs();
-    
+      introguide.setOptions({'tooltipPosition': 'auto', 'showProgress': 'true', 'showStepNumbers': 'false', 
+       'showBullets': 'true', "showButtons": "false"});
       introguide.setOptions({
         steps: [
         {
+          intro: 'Pycoin is a way to see how the world\'s cryptocurrencies interact with each other',
+          position: 'center'
+        },
+        {
           element: '#image-container',
-          intro: 'View All Cryptocurrencies',
+          intro: 'These are the icons of currently selected cryptocurrencies',
           position: 'bottom'
         },
         {
           element: '#search-container',
-          intro: 'Search for Cryptos',
-          position: 'top'
-        },
-        {
-          element: '#barchart-container',
-          intro: 'linegraph 1',
-          position: 'top'
-        },
-        {
-          element: '#barchart-container2',
-          intro: 'linegraph 2',
+          intro: 'Use these drop-down menus to individually select currencies',
           position: 'top'
         },
         {
           element: '#node-container',
-          intro: 'force layout graph',
+          intro: 'A graph visualization of cryptocurrencies: \n You can click and drag nodes to pin them down',
           position: 'top'
-        }
+        },
+        {
+          element: '#node-container',
+          intro: 'Hover over an edge between two nodes to update the currently selected nodes',
+          position: 'bottom'
+        },
+        {
+          element: '#barchart-container',
+          intro: 'This graph shows trade volume between selected currencies',
+          position: 'left'
+        },
+        {
+          element: '#barchart-container2',
+          intro: 'This graph shows price fluctuations between selected currencies',
+          position: 'top'
+        },
         ]
       });
-      
-      
-      
 
       var nodeData = [];
       var marketData = [];
