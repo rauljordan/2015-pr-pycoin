@@ -14,7 +14,7 @@
         <div class="col s3">
           <div class="card">
             <div class="card-image waves-effect waves-block waves-light">
-              <img id="first-image" src="{{url_for('static', filename='img/coins/BTC.png')}}" alt="COIN.png">
+              <img id="first-image" src="{{url_for('static', filename='img/coins/BTC.png')}}" alt="img/coins/COIN.png">
             </div>
             <div class="card-content">
               <span class="card-title activator grey-text text-darken-4" id="first-name">BTC </span>
@@ -26,7 +26,7 @@
         <div class="col s3">
           <div class="card">
             <div class="card-image waves-effect waves-block waves-light">
-              <img id="second-image" src="{{url_for('static', filename='img/coins/LTC.png')}}" alt="COIN.png">
+              <img id="second-image" src="{{url_for('static', filename='img/coins/LTC.png')}}" alt="img/coins/COIN.png">
             </div>
             <div class="card-content">
               <span class="card-title activator grey-text text-darken-4" id="second-name">LTC </span>
@@ -54,24 +54,16 @@
 
       </div>
 
+     
       <div class="row" id="search-container">
-        <div class="input-field col s6">
+        <div class="input-field col s12">
           <select style="position:relative;z-index:10000;" id="first-select">
-            <option value="BTC" selected>BTC</option>
-            <option value="LTC" disabled>LTC</option>
-            
-          </select>
-          <label>Trading From</label>
-        </div>
 
-        <div class="input-field col s6">
-          <select style="position:relative;z-index:10000;" id="second-select">
-            <option value="BTC" disabled>BTC</option>
-            <option value="LTC" selected>LTC</option>
           </select>
-          <label>Trading To</label>
+          <label>Select Cryptocurrency</label>
         </div>
       </div>
+
 
       <div class="row">
           <div id="barchart-container" class="col s12">
@@ -88,7 +80,7 @@
   <script type="text/javascript">
     $(document).ready(function() {
       $('.page-footer').hide();
-      
+
 
       var introguide = introJs();
       introguide.setOptions({'tooltipPosition': 'auto', 'showProgress': 'true', 'showStepNumbers': 'false', 
@@ -156,17 +148,12 @@
         var coinNames = Object.keys(nodeData).sort();
         for (var coin in coinNames) {
             
-            if (coin != "BTC" && coin != "LTC") {
+            
               $('#first-select')
                   .append($("<option></option>")
                   .attr("value",coinNames[coin])
                   .text(coinNames[coin])); 
-
-              $('#second-select')
-                  .append($("<option></option>")
-                  .attr("value",coinNames[coin])
-                  .text(coinNames[coin])); 
-            }
+ 
         }
 
         $('select').material_select();
