@@ -45,7 +45,8 @@
       <div class="row" id="search-container">
         <div class="input-field col s6">
           <select style="position:relative;z-index:10000;" id="first-select">
-            <option value="" disabled selected>Choose the Coin</option>
+            <option value="BTC" selected>BTC</option>
+            <option value="LTC" disabled>LTC</option>
             
           </select>
           <label>Trading From</label>
@@ -53,10 +54,8 @@
 
         <div class="input-field col s6">
           <select style="position:relative;z-index:10000;" id="second-select">
-            <option value="" disabled selected>Choose the Coin</option>
-            <option value="1">BTC</option>
-            <option value="2">LTC</option>
-            <option value="3">XTC</option>
+            <option value="BTC" disabled>BTC</option>
+            <option value="LTC" selected>LTC</option>
           </select>
           <label>Trading To</label>
         </div>
@@ -138,16 +137,17 @@
         var coinNames = Object.keys(nodeData).sort();
         for (var coin in coinNames) {
             
-            $('#first-select')
+            if (coin != "BTC" && coin != "LTC") {
+              $('#first-select')
                   .append($("<option></option>")
                   .attr("value",coinNames[coin])
                   .text(coinNames[coin])); 
 
-            $('#second-select')
+              $('#second-select')
                   .append($("<option></option>")
                   .attr("value",coinNames[coin])
                   .text(coinNames[coin])); 
-
+            }
         }
 
         $('select').material_select();

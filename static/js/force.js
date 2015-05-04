@@ -1,4 +1,3 @@
-
 /**
  * Force object for Pycoin
  * @param _parentElement -- the HTML or SVG element (D3 node) to which to attach the vis
@@ -7,6 +6,7 @@
  * @constructor
  */
 Force = function(_parentElement, _nodeData, _eventHandler){
+
     this.parentElement = _parentElement;
     this.data = _nodeData;
     this.eventHandler = _eventHandler;
@@ -14,10 +14,11 @@ Force = function(_parentElement, _nodeData, _eventHandler){
     var style = window.getComputedStyle(this.parentElement.node(), null);
 
     this.margin = {top: 20, right: 50, bottom: 10, left: 20},
-    this.width = parseInt(style.getPropertyValue('width')) - this.margin.left - this.margin.right;
-    this.height = 1200 - this.margin.top - this.margin.bottom;
+    this.width = parseInt(style.getPropertyValue('width')) - this.margin.left - this.margin.right;
+    this.height = 1200 - this.margin.top - this.margin.bottom;
 
     this.initVis();
+    
 }
 
 
@@ -75,7 +76,19 @@ Force.prototype.initVis = function(){
 
 
 Force.prototype.makeForce = function(theGraph) {
+
 	var that = this;
+
+	this.tip = d3.tip()
+	  .attr('class', 'd3-tip')
+	  .offset([-10, 0])
+	  .html(function(d) {
+	  	console.log(d);
+	    return "<strong>Name:</strong> <span style='color:red'>" + d.name + "</span> <br/> <strong>Traded With Coins:</strong> <span style='color:red'>" + d.linked_coins.length + "</span>";
+	  });
+
+	this.svg.call(this.tip);
+
 	this.force = d3.layout.force()
 	    .size([this.width, this.height])
 	    .gravity(0.1)
@@ -90,10 +103,18 @@ Force.prototype.makeForce = function(theGraph) {
 			 
 			  that.node.attr("cx", function(d) { 
 
-			  		if (d.name == "BTC" || d.name == "LTC") {
+			  		if (d.name == "BTC") {
 			  			d3.select(this).classed("fixed", d.fixed = true);
-			  			return d.x;
+			  			return d.x = 225;
 			  		}
+			  		else if (d.name == "LTC") {
+			  			d3.select(this).classed("fixed", d.fixed = true);
+			  			return d.x = 250;
+			  		}
+			  		else if (d.name == "XRP") {
+			  			d3.select(this).classed("fixed", d.fixed = true);
+			  			return d.x = 275;
+			  		}			  		
 			  		else {
 			  			return d.x = Math.max(that.radius, 
 			  				Math.min(that.width - that.radius, d.x)); 
@@ -101,13 +122,22 @@ Force.prototype.makeForce = function(theGraph) {
 			  		
 			  	})
         		.attr("cy", function(d) { 
-        			if (d.name == "BTC" || d.name == "LTC") {
+        			
+			  		if (d.name == "BTC") {
 			  			d3.select(this).classed("fixed", d.fixed = true);
-			  			return d.y;
-			  		} 
+			  			return d.y = 150;
+			  		}
+			  		else if (d.name == "LTC") {
+			  			d3.select(this).classed("fixed", d.fixed = true);
+			  			return d.y = 50;
+			  		}
+			  		else if (d.name == "XRP") {
+			  			d3.select(this).classed("fixed", d.fixed = true);
+			  			return d.y = 100;
+			  		}			  		
 			  		else {
 			  			return d.y = Math.max(that.radius, 
-        				Math.min(that.height - that.radius, d.y)); 
+			  				Math.min(that.width - that.radius, d.y)); 
 			  		}
         		 
         		});
@@ -143,16 +173,6 @@ Force.prototype.makeForce = function(theGraph) {
 			var name = d.source.name + '/' + d.target.name;
 		
 			$(that.eventHandler).trigger("selectionChanged", name);
-
-
-			$("#img1").html('<h1>Hello World </h1>');
-			$("#img2").html('');
-
-			var src1 = "{{url_for('static', filename='img/coins/" + d.source.name + ".png')}}";
-			var src2 = "{{url_for('static', filename='img/coins/" + d.target.name + ".png')}}";
-			$('#img1').html('<img src=' + src1 + ' class="activator">')
-			$('#img2').html('<img src=' + src2 + ' class="activator">')
-
 						
 				
 		})
@@ -167,7 +187,25 @@ Force.prototype.makeForce = function(theGraph) {
 
 		});
 
-	
+	$('#first-select').change(function(event) {
+		var str1 = "";
+		var str2 = "";
+	    $( "#first-select option:selected" ).each(function() {
+	      str1 += $(this).text() + " ";
+	    });
+
+	    $( "#second-select option:selected" ).each(function() {
+	      str2 += $(this).text() + " ";
+	    });
+
+	    var name = str1 + '/' + str2;
+
+	    $(that.eventHandler).trigger("selectionChanged", name);
+	});
+
+	this.node
+		.on('mouseover', this.tip.show)
+		.on('mouseout',this.tip.hide);
 };
 
 /**
@@ -192,4 +230,3 @@ Force.prototype.tick = function() {
   this.node.attr("cx", function(d) { return d.x; })
       .attr("cy", function(d) { return d.y; });
 };
-
