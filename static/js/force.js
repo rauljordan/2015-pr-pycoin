@@ -209,15 +209,22 @@ Force.prototype.makeForce = function(theGraph) {
 
 
 
-	    var specific_node = d3.select("." + str1);
+	    d3.selectAll('.node').style({"opacity":"0.2", "pointer-events":"none"});
 
-	    specific_node.style({"fill":"green"})
+	  	var specific_node = d3.select("." + str1);
 
-	    var linked = specific_node.data()[0]["linked_coins"];
+		specific_node.style({"opacity":"1", "pointer-events":"all"})
 
-	   	_.each(linked, function(el) {
-	   		d3.select("." + el).style({"fill":"green"});
-	   	});
+		var linked = specific_node.data()[0]["linked_coins"];
+
+		_.each(linked, function(el) {
+			if (el !== "42") {
+				d3.select("." + el).style({"opacity":"1", "pointer-events":"all"});
+			}
+		});
+
+		// Selects all Links and classes them
+		//d3.selectAll('.link')
 	   
 	});
 };
@@ -238,7 +245,9 @@ Force.prototype.dblclick = function(d) {
 	var linked = specific_node.data()[0]["linked_coins"];
 
 	_.each(linked, function(el) {
-	   	d3.select("." + el).style({"opacity":"1", "pointer-events":"all"});
+		if (el !== "42") {
+			d3.select("." + el).style({"opacity":"1", "pointer-events":"all"});
+		}
 	});
 }
 
