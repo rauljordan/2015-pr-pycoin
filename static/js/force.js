@@ -223,8 +223,7 @@ Force.prototype.makeForce = function(theGraph) {
 			}
 		});
 
-		// Selects all Links and classes them
-		//d3.selectAll('.link')
+		
 	   
 	});
 };
