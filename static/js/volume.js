@@ -164,16 +164,25 @@ Volume.prototype.onSelectionChange = function (names){
         this.axis_label = second_combination;
         d3.select('.y.axis').select('text').text(this.axis_label);
 
-        // Updates all the exchange information
-        $('#total-trades').text(this.displayData.length + ' Total Recent Trades')
+        var avg = d3.mean(this.displayData, function(d) { return d.price });
+        $('#average-price').text('$' + avg);
+
+        var volume = d3.sum(this.displayData, function(d) { return d.price });
+        $('#total-volume').text('$' + volume);
+
    }
    else {
         this.displayData = this.data[first_combination]["recenttrades"];
         this.axis_label = first_combination;
         d3.select('.y.axis').select('text').text(this.axis_label);
 
-        // Updates all the exchange information
-        $('#total-trades').text(this.displayData.length + ' Total Recent Trades')
+      
+
+        var avg = d3.mean(this.displayData, function(d) { return d.price });
+        $('#average-price').text('$' + avg);
+
+        var volume = d3.sum(this.displayData, function(d) { return d.price });
+        $('#total-volume').text('$' + volume);
    }   
    
 
