@@ -204,6 +204,13 @@ Volume.prototype.onSelectionChange = function (names){
    this.updateVis();
 } 
 
+Volume.prototype.changeFirstDropdown = function(value) {
+  // body...
+};
+
+Volume.prototype.changeSecondDropdown = function(value) {
+  // body...
+};
 
 
 

@@ -83,7 +83,10 @@ Force.prototype.makeForce = function(theGraph) {
 	  .attr('class', 'd3-tip')
 	  .offset([-10, 0])
 	  .html(function(d) {
-	    return "<strong>Name:</strong> <span style='color:red'>" + d.name + "</span> <br/> <strong>Traded With Coins:</strong> <span style='color:red'>" + d.linked_coins.length + "</span>";
+	  	var src = "img/coins/" + d.name + ".png";
+	    return "<strong>Name:</strong> <span style='color:red'>" + d.name + 
+	    "</span> <br/> <strong>Traded With:</strong> <span style='color:red'>" + 
+	    d.linked_coins.length + " Coins</span> <br> <img src='"+src+"' height='100px' width='100px' style='margin-left:20px;' alt='img/coins/COIN.png'>";
 	  });
 
 	this.svg.call(this.tip);
@@ -200,7 +203,29 @@ Force.prototype.makeForce = function(theGraph) {
 	      str2 += $(this).text() + " ";
 	    });
 
-	    var name = str1 + '/' + str2;
+	    var names = {
+	    	first: str1,
+	    	second: str2
+	    }
+
+	    $(that.eventHandler).trigger("selectionChanged", name);
+	});
+
+	$('#second-select').change(function(event) {
+		var str1 = "";
+		var str2 = "";
+	    $( "#first-select option:selected" ).each(function() {
+	      str1 += $(this).text() + " ";
+	    });
+
+	    $( "#second-select option:selected" ).each(function() {
+	      str2 += $(this).text() + " ";
+	    });
+
+	    var names = {
+	    	first: str1,
+	    	second: str2
+	    }
 
 	    $(that.eventHandler).trigger("selectionChanged", name);
 	});
