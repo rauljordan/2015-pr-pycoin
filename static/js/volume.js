@@ -7,7 +7,7 @@ Volume = function(_parentElement, _marketData, _eventHandler){
     this.displayData = this.data["MNC/XRP"]["recenttrades"];
     var style = window.getComputedStyle(this.parentElement.node(), null);
 
-    this.margin = {top: 0, right: 0, bottom: 160, left: 50},
+    this.margin = {top: 0, right: 0, bottom: 70, left: 50},
     this.width = parseInt(style.getPropertyValue('width')) - this.margin.left - this.margin.right;
     this.height = 350 - this.margin.top - this.margin.bottom;
 
@@ -15,8 +15,10 @@ Volume = function(_parentElement, _marketData, _eventHandler){
   
     this.times = d3.range(0, that.displayData.length).map(function(i) {
       return that.displayData[i]["time"];
-    });
+    }).reverse();
 
+    this.firstDateFormatter = d3.time.format("%Y-%m-%d");
+    this.lastDateFormatter = d3.time.format("%B");
 
     this.initVis();
 }
@@ -26,6 +28,8 @@ Volume = function(_parentElement, _marketData, _eventHandler){
  * Method that sets up the SVG and the variables
  */
 Volume.prototype.initVis = function(){
+
+    var that = this;
 
     // constructs SVG layout
     this.svg = this.parentElement.append("svg")
@@ -44,7 +48,25 @@ Volume.prototype.initVis = function(){
     this.xAxis = d3.svg.axis()
       .scale(this.x)
       .tickFormat(function (d, i) {
-        return i % 100 == 0 ? d : "";
+        var dt = new Date(d);
+
+        var monthNames = [
+            "January", "February", "March",
+            "April", "May", "June", "July",
+            "August", "September", "October",
+            "November", "December"
+        ];
+
+        if (i == 0) {
+          
+          return "First Day " + monthNames[dt.getMonth()] + " " + dt.getDate();
+        }
+        else if (i == 150) {
+          return "Last Day " + monthNames[dt.getMonth()] + " " + dt.getDate();
+        }
+        else {
+          return "";
+        }
       })
       .orient("bottom");
 
@@ -66,7 +88,7 @@ Volume.prototype.initVis = function(){
         .attr("y", 6)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text("No. of trades per day");
+        .text("Tot. Traded Per Day in USD");
         
     // call the update method
     this.updateVis();
@@ -81,20 +103,25 @@ Volume.prototype.updateVis = function(){
 
     var that = this;
     // updates scales
-    this.x.domain(this.times.map(function(d) { return d }));
+    this.x.domain(this.times);
     this.y.domain([0, d3.max(this.displayData, function(d) {
       return d.total*1.5;
     })]);
 
-    console.log(this.displayData);
     // updates axis
     this.svg.select(".x.axis")
         .attr("transform", "translate(0," + (that.height) + ")")
         .call(this.xAxis)
         .selectAll("text")
         .style("text-anchor", "end")
-        .attr("transform", function(d){
-          return "rotate(-65) translate(0,15)"
+        .attr("transform", function(d, i){
+          if (i == 0) {
+            return "rotate(0) translate(120,15)";
+          }
+          else {
+            return "rotate(0) translate(20,15)";
+          }
+          
         });
 
     this.svg.select(".y.axis")
