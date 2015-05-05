@@ -51,7 +51,8 @@ Volume.prototype.initVis = function(){
 
     this.yAxis = d3.svg.axis()
       .scale(this.y)
-      .orient("left");
+      .orient("left")
+      .tickFormat(d3.format("s"));
 
     // Add axes visual elements
     this.svg.append("g")
@@ -154,10 +155,12 @@ Volume.prototype.onSelectionChange = function (names){
         d3.select('.y.axis').select('text').text(this.axis_label);
 
         var avg = d3.mean(this.displayData, function(d) { return d.price });
-        $('#average-price').text('$' + avg);
+        var format_avg = d3.format(".15f")
+        $('#average-price').text('$' + format_avg(avg));
 
-        var volume = d3.sum(this.displayData, function(d) { return d.total });
-        $('#total-volume').text(volume + ' buys and sells');
+        var volume = d3.sum(this.displayData, function(d) { return d.price });
+        var format_volume = d3.format(".15f")
+        $('#total-volume').text('$' + format_volume(volume));
 
         // Changes the images
         $("#first-image").attr('src', "img/coins/" + names.second + ".png");
@@ -174,11 +177,12 @@ Volume.prototype.onSelectionChange = function (names){
         d3.select('.y.axis').select('text').text(this.axis_label);
 
         var avg = d3.mean(this.displayData, function(d) { return d.price });
-        $('#average-price').text('$' + parseFloat(avg).toFixed(9));
+        var format_avg = d3.format(".15f")
+        $('#average-price').text('$' + format_avg(avg));
 
-        var volume = d3.sum(this.displayData, function(d) { return d.total });
-
-        $('#total-volume').text("$" + volume + ' in buys and sells');
+        var volume = d3.sum(this.displayData, function(d) { return d.price });
+        var format_volume = d3.format(".15f")
+        $('#total-volume').text('$' + format_volume(volume));
 
         // Changes the images
         $("#first-image").attr('src', "img/coins/" + names.first + ".png");
