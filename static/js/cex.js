@@ -82,8 +82,7 @@ Cex.prototype.initVis = function(){
         .attr("y", 6)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text("USD Bitcoin");
-
+        .text("USD Bitcoin"); 
 
     this.updateVis();
 }
@@ -94,7 +93,9 @@ Cex.prototype.initVis = function(){
  * the drawing function - should use the D3 selection, enter, exit
  * @param _options -- only needed if different kinds of updates are needed
  */
-Cex.prototype.updateVis = function(){
+Cex.prototype.updateVis = function(){  
+
+    d3.select("path.line").remove();
 
     var that = this;
     // updates scales
@@ -107,6 +108,7 @@ Cex.prototype.updateVis = function(){
       .attr("d", this.line);
 
 }
+
 
 /**
  * Gets called by event handler and should create new aggregated data

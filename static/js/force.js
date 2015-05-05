@@ -91,6 +91,7 @@ Force.prototype.makeForce = function(theGraph) {
 
 	this.svg.call(this.tip);
 
+
 	this.force = d3.layout.force()
 	    .size([this.width, this.height])
 	    .gravity(0.1)
