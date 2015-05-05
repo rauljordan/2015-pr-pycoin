@@ -14,6 +14,7 @@
   stroke: #008894;
   stroke-width: 2px;
   opacity:1;
+  cursor:pointer;
 }
 
 .node {
