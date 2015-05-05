@@ -179,7 +179,7 @@ Volume.prototype.onSelectionChange = function (names){
 
         var volume = d3.sum(this.displayData, function(d) { return d.total });
 
-        $('#total-volume').text(volume + ' buys and sells');
+        $('#total-volume').text("$" + volume + ' in buys and sells');
 
         // Changes the images
         $("#first-image").attr('src', "img/coins/" + names.first + ".png");
