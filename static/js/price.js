@@ -14,6 +14,7 @@ Price = function(_parentElement, _marketData, _eventHandler){
     this.dateFormatter = d3.time.format("%d-%H:%M");
 
     var that = this;
+    
   
     this.times = d3.range(0, that.displayData.length).map(function(i) {
       return that.displayData[i]["time"];

@@ -7,11 +7,9 @@ Volume = function(_parentElement, _marketData, _eventHandler){
     this.displayData = this.data["MNC/XRP"]["recenttrades"];
     var style = window.getComputedStyle(this.parentElement.node(), null);
 
-    this.margin = {top: 20, right: 50, bottom: 200, left: 60},
+    this.margin = {top: 0, right: 0, bottom: 0, left: 100},
     this.width = parseInt(style.getPropertyValue('width')) - this.margin.left - this.margin.right;
-    this.height = 420 - this.margin.top - this.margin.bottom;
-
-    this.dateFormatter = d3.time.format("%d-%H:%M");
+    this.height = 1000 - this.margin.top - this.margin.bottom;
 
     var that = this;
   
@@ -44,7 +42,6 @@ Volume.prototype.initVis = function(){
     this.x = d3.scale.ordinal()
       .rangeRoundBands([0, this.width], .1);
 
-
     this.xAxis = d3.svg.axis()
       .scale(this.x)
       .tickFormat(function (d, i) {
@@ -71,8 +68,6 @@ Volume.prototype.initVis = function(){
         .style("text-anchor", "end")
         .text("Trade Volume " + this.axis_label);
         
-
-
     // call the update method
     this.updateVis();
 }
@@ -153,9 +148,6 @@ Volume.prototype.updateVis = function(){
  */
 Volume.prototype.onSelectionChange = function (names){
 
-   
-   
-
    var first_combination = names.first + '/' + names.second;
    var second_combination = names.second + '/' + names.first;
 
@@ -184,11 +176,11 @@ Volume.prototype.onSelectionChange = function (names){
         this.axis_label = first_combination;
         d3.select('.y.axis').select('text').text(this.axis_label);
 
-
         var avg = d3.mean(this.displayData, function(d) { return d.price });
-        $('#average-price').text('$' + avg);
+        $('#average-price').text('$' + parseFloat(avg).toFixed(9));
 
         var volume = d3.sum(this.displayData, function(d) { return d.price });
+
         $('#total-volume').text('$' + volume);
 
         // Changes the images
