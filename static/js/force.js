@@ -174,6 +174,8 @@ Force.prototype.makeForce = function(theGraph) {
       })
       .attr("r", this.radius - 0.75)
 
+    // Classes every link
+    this.link.classed("selected", true)
    
 	for (i = 0; i < this.graph.nodes.length; i++) {
 	    that.linkedByIndex[i + "," + i] = 1;
@@ -192,26 +194,30 @@ Force.prototype.makeForce = function(theGraph) {
    this.link.
 		on('mouseover', function(d) {
 
-			d3.selectAll(".link").style({'opacity':'0.1'});
-			d3.select(this).style({'stroke':'red', 'stroke-width':'15px', 'opacity':'1'});
+			if (d3.select(this).classed("selected")) {
+				d3.select(this).style({'stroke':'red', 'stroke-width':'15px'});
 
-			var names = {
-				first: d.source.name,
-				second: d.target.name
+				var names = {
+					first: d.source.name,
+					second: d.target.name
+				}
+
+				$(that.eventHandler).trigger("selectionChanged", names);
 			}
-
-			$(that.eventHandler).trigger("selectionChanged", names);
+			
+			
 						
 				
 		})
 		.on('mouseout', function(d) {
 			
-			d3.selectAll('.link').style({
-				'stroke':'#008894',
-				'stroke-width':'2px'
-			});
-
-
+			if (d3.select(this).classed("selected")) {
+				d3.selectAll('.link').style({
+					'stroke':'#008894',
+					'stroke-width':'2px'
+				});
+			}
+			
 		});
 
 
@@ -272,12 +278,20 @@ Force.prototype.connectedNodes = function (item) {
         that.link.style("opacity", function (o) {
             return d.index==o.source.index | d.index==o.target.index ? 1 : 0.1;
         });
+
+        that.link.classed("selected", function(o) {
+        	return d.index==o.source.index | d.index==o.target.index;
+        });
+
         //Reduce the op
         that.toggle = 1;
+
     } else {
         //Put them back to opacity=1
         that.node.style("opacity", 1);
         that.link.style("opacity", 1);
+
+        that.link.classed("selected", false);
         that.toggle = 0;
     }
 }
