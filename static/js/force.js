@@ -161,7 +161,9 @@ Force.prototype.makeForce = function(theGraph) {
   this.node = this.node.data(theGraph.nodes)
       .enter()
       .append("circle")
-      .attr("class", "node")
+      .attr("class", function(d) {
+      	return "node" + " " + d.name;
+      })
       .attr("r", this.radius - 0.75)
       .on("dblclick", this.dblclick)
       .call(this.drag)
@@ -193,47 +195,38 @@ Force.prototype.makeForce = function(theGraph) {
 
 		});
 
-	$('#first-select').change(function(event) {
-		var str1 = "";
-		var str2 = "";
-	    $( "#first-select option:selected" ).each(function() {
-	      str1 += $(this).text() + " ";
-	    });
-
-	    $( "#second-select option:selected" ).each(function() {
-	      str2 += $(this).text() + " ";
-	    });
-
-	    var names = {
-	    	first: str1,
-	    	second: str2
-	    }
-
-	    $(that.eventHandler).trigger("selectionChanged", name);
-	});
-
-	$('#second-select').change(function(event) {
-		var str1 = "";
-		var str2 = "";
-	    $( "#first-select option:selected" ).each(function() {
-	      str1 += $(this).text() + " ";
-	    });
-
-	    $( "#second-select option:selected" ).each(function() {
-	      str2 += $(this).text() + " ";
-	    });
-
-	    var names = {
-	    	first: str1,
-	    	second: str2
-	    }
-
-	    $(that.eventHandler).trigger("selectionChanged", name);
-	});
 
 	this.node
 		.on('mouseover', this.tip.show)
 		.on('mouseout',this.tip.hide);
+
+
+
+	$('#first-select').change(function(event) {
+		var str1 = "";
+	    $( "#first-select option:selected" ).each(function() {
+	      str1 += $(this).text() + " ";
+	    });
+
+
+
+	    d3.selectAll('.node').style({"opacity":"0.2", "pointer-events":"none"});
+
+	  	var specific_node = d3.select("." + str1);
+
+		specific_node.style({"opacity":"1", "pointer-events":"all"})
+
+		var linked = specific_node.data()[0]["linked_coins"];
+
+		_.each(linked, function(el) {
+			if (el !== "42") {
+				d3.select("." + el).style({"opacity":"1", "pointer-events":"all"});
+			}
+		});
+
+		
+	   
+	});
 };
 
 /**
@@ -242,6 +235,20 @@ Force.prototype.makeForce = function(theGraph) {
  */
 Force.prototype.dblclick = function(d) {
   	d3.select(this).classed("fixed", d.fixed = false);
+
+  	d3.selectAll('.node').style({"opacity":"0.2", "pointer-events":"none"});
+
+  	var specific_node = d3.select("." + d.name);
+
+	specific_node.style({"opacity":"1", "pointer-events":"all"})
+
+	var linked = specific_node.data()[0]["linked_coins"];
+
+	_.each(linked, function(el) {
+		if (el !== "42") {
+			d3.select("." + el).style({"opacity":"1", "pointer-events":"all"});
+		}
+	});
 }
 
 Force.prototype.dragstart = function(d) {
