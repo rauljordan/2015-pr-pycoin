@@ -55,6 +55,9 @@ Cex.prototype.initVis = function(){
 
     this.xAxis = d3.svg.axis()
         .scale(this.x)
+        .tickFormat(function (d, i) {
+          return i % 10 == 0 ? d : "";
+        })
         .orient("bottom");
 
     this.yAxis = d3.svg.axis()
@@ -82,7 +85,7 @@ Cex.prototype.initVis = function(){
         .attr("y", 6)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text(this.axis_label); 
+        .text('Average Trade Price vs. Time'); 
 
     this.updateVis();
 }
@@ -125,14 +128,12 @@ Cex.prototype.onSelectionChange = function (names){
    var second_combination = names.second + '/' + names.first;
 
    if (_.isUndefined(this.data[first_combination])) {
-        this.axis_label = second_combination;
-        d3.select('.y.axis').select('text').text(this.axis_label);
+     
 
         this.displayData = this.data[second_combination]["recenttrades"];
    }
    else {
-        this.axis_label = first_combination;
-        d3.select('.y.axis').select('text').text(this.axis_label);
+      
 
         this.displayData = this.data[first_combination]["recenttrades"];
    }   
