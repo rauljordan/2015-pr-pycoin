@@ -156,7 +156,7 @@ Volume.prototype.onSelectionChange = function (names){
         var avg = d3.mean(this.displayData, function(d) { return d.price });
         $('#average-price').text('$' + avg);
 
-        var volume = d3.sum(this.displayData, function(d) { return d.volume });
+        var volume = d3.sum(this.displayData, function(d) { return d.total });
         $('#total-volume').text(volume + ' buys and sells');
 
         // Changes the images
@@ -176,9 +176,9 @@ Volume.prototype.onSelectionChange = function (names){
         var avg = d3.mean(this.displayData, function(d) { return d.price });
         $('#average-price').text('$' + parseFloat(avg).toFixed(9));
 
-        var volume = d3.sum(this.displayData, function(d) { return d.volume });
+        var volume = d3.sum(this.displayData, function(d) { return d.total });
 
-        $('#total-volume').text(volume + ' buys and sells');
+        $('#total-volume').text("$" + volume + ' in buys and sells');
 
         // Changes the images
         $("#first-image").attr('src', "img/coins/" + names.first + ".png");
