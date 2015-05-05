@@ -28,8 +28,8 @@
 }
 #barchart-container2 path{
   fill: none;
-  stroke: black;
-  stroke-width: 2px;
+  stroke: #ffab00;
+  stroke-width: 3px;
 }
 
 .d3-tip {
