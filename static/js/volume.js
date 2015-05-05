@@ -7,13 +7,9 @@ Volume = function(_parentElement, _marketData, _eventHandler){
     this.displayData = this.data["MNC/XRP"]["recenttrades"];
     var style = window.getComputedStyle(this.parentElement.node(), null);
 
-    this.margin = {top: 0, right: 0, bottom: 140, left: 100},
+    this.margin = {top: 0, right: 0, bottom: 0, left: 100},
     this.width = parseInt(style.getPropertyValue('width')) - this.margin.left - this.margin.right;
-<<<<<<< HEAD
     this.height = 350 - this.margin.top - this.margin.bottom;
-=======
-    this.height = 300 - this.margin.top - this.margin.bottom;
->>>>>>> fc57560296dbdc69631220c388dc89f5a9069b84
 
     var that = this;
   
