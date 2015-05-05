@@ -15,7 +15,6 @@ Price = function(_parentElement, _marketData, _eventHandler){
 
     var that = this;
     
-  
     this.times = d3.range(0, that.displayData.length).map(function(i) {
       return that.displayData[i]["time"];
     });
@@ -55,7 +54,7 @@ Price.prototype.initVis = function(){
 
     this.yAxis = d3.svg.axis()
       .scale(this.y)
-      .orient("left");
+      .orient("left")
 
     // Add axes visual elements
     this.svg.append("g")
@@ -72,11 +71,9 @@ Price.prototype.initVis = function(){
         .style("text-anchor", "end")
         .text("Price " + this.axis_label);
         
-
-
-
     // call the update method
     this.updateVis();
+
 }
 
 
