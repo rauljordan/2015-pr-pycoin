@@ -265,10 +265,10 @@ Force.prototype.connectedNodes = function (item) {
         //Reduce the opacity of all but the neighbouring nodes
         d = d3.select(item).node().__data__;
         that.node.style("opacity", function (o) {
-            return that.neighboring(d, o) | that.neighboring(o, d) ? 1 : 0.1;
+            return that.neighboring(d, o) | that.neighboring(o, d) ? 1 : 0.07;
         });
         that.link.style("opacity", function (o) {
-            return d.index==o.source.index | d.index==o.target.index ? 1 : 0.1;
+            return d.index==o.source.index | d.index==o.target.index ? 1 : 0.07;
         });
 
         that.link.classed("selected", function(o) {
