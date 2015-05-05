@@ -235,19 +235,10 @@ Force.prototype.makeForce = function(theGraph) {
 
 
 
-	    d3.selectAll('.node').style({"opacity":"0.2", "pointer-events":"none"});
 
-	  	var specific_node = d3.select("." + str1);
+	  	var specific_node = d3.select("." + str1)[0][0];
 
-		specific_node.style({"opacity":"1", "pointer-events":"all"})
-
-		var linked = specific_node.data()[0]["linked_coins"];
-
-		_.each(linked, function(el) {
-			if (el !== "42") {
-				d3.select("." + el).style({"opacity":"1", "pointer-events":"all"});
-			}
-		});
+		that.connectedNodes(specific_node);
 
 
 	});
@@ -268,6 +259,7 @@ Force.prototype.neighboring = function (a, b) {
 Force.prototype.connectedNodes = function (item) {
 
 	var that = this;
+
 
     if (that.toggle == 0) {
         //Reduce the opacity of all but the neighbouring nodes
