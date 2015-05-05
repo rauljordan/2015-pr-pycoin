@@ -67,7 +67,10 @@ Force.prototype.initVis = function(){
     this.radius = 10;
 
 
-	this.svg.selectAll('text.label').attr("fill", "black")
+	this.svg.selectAll('text.label').attr("fill", "black");
+
+
+	
 
 	// Makes the force layout
 	this.makeForce(this.graph);
@@ -78,6 +81,11 @@ Force.prototype.initVis = function(){
 Force.prototype.makeForce = function(theGraph) {
 
 	var that = this;
+
+	//Toggle stores whether the highlighting is on
+    this.toggle = 0;
+	//Create an array logging what is connected to what
+	this.linkedByIndex = {};
 
 	this.tip = d3.tip()
 	  .attr('class', 'd3-tip')
@@ -154,45 +162,62 @@ Force.prototype.makeForce = function(theGraph) {
       .links(theGraph.links)
       .start();
 
-  this.link = this.link.data(theGraph.links)
+  	this.link = this.link.data(theGraph.links)
       .enter().append("line")
       .attr("class", "link");
 
-  this.node = this.node.data(theGraph.nodes)
+  	this.node = this.node.data(theGraph.nodes)
       .enter()
       .append("circle")
       .attr("class", function(d) {
       	return "node" + " " + d.name;
       })
       .attr("r", this.radius - 0.75)
-      .on("dblclick", this.dblclick)
-      .call(this.drag)
+
+    // Classes every link
+    this.link.classed("selected", true)
+   
+	for (i = 0; i < this.graph.nodes.length; i++) {
+	    that.linkedByIndex[i + "," + i] = 1;
+	}
+
+	this.graph.links.forEach(function (d) {
+	    that.linkedByIndex[d.source.index + "," + d.target.index] = 1;
+	});
+
+	this.node.on("dblclick", function() {
+		that.connectedNodes(this);
+	})
+    .call(this.drag)
 
   	
    this.link.
 		on('mouseover', function(d) {
 
-			d3.selectAll(".link").style({'opacity':'0.1'});
-			d3.select(this).style({'stroke':'red', 'stroke-width':'15px', 'opacity':'1'});
+			if (d3.select(this).classed("selected")) {
+				d3.select(this).style({'stroke':'red', 'stroke-width':'15px'});
 
-			var names = {
-				first: d.source.name,
-				second: d.target.name
+				var names = {
+					first: d.source.name,
+					second: d.target.name
+				}
+
+				$(that.eventHandler).trigger("selectionChanged", names);
 			}
-
-			$(that.eventHandler).trigger("selectionChanged", names);
+			
+			
 						
 				
 		})
 		.on('mouseout', function(d) {
 			
-			d3.selectAll('.link').style({
-				'stroke':'#008894',
-				'stroke-width':'2px',
-				'opacity':'1'
-			});
-
-
+			if (d3.select(this).classed("selected")) {
+				d3.selectAll('.link').style({
+					'stroke':'#008894',
+					'stroke-width':'2px'
+				});
+			}
+			
 		});
 
 
@@ -210,49 +235,58 @@ Force.prototype.makeForce = function(theGraph) {
 
 
 
-	    d3.selectAll('.node').style({"opacity":"0.2", "pointer-events":"none"});
 
-	  	var specific_node = d3.select("." + str1);
+	  	var specific_node = d3.select("." + str1)[0][0];
 
-		specific_node.style({"opacity":"1", "pointer-events":"all"})
+		that.connectedNodes(specific_node);
 
-		var linked = specific_node.data()[0]["linked_coins"];
-
-		_.each(linked, function(el) {
-			if (el !== "42") {
-				d3.select("." + el).style({"opacity":"1", "pointer-events":"all"});
-			}
-		});
-
-		d3.selectAll('.link').style({"opacity":"0.2", "pointer-events":"none"});
 
 	});
+
+	
 };
 
-/**
- * the drawing function - should use the D3 selection, enter, exit
- * @param _options -- only needed if different kinds of updates are needed
- */
-Force.prototype.dblclick = function(d) {
-  	d3.select(this).classed("fixed", d.fixed = false);
-
-  	d3.selectAll('.node').style({"opacity":"0.2", "pointer-events":"none"});
-
-  	var specific_node = d3.select("." + d.name);
-
-	specific_node.style({"opacity":"1", "pointer-events":"all"})
-
-	var linked = specific_node.data()[0]["linked_coins"];
-
-	_.each(linked, function(el) {
-		if (el !== "42") {
-			d3.select("." + el).style({"opacity":"1", "pointer-events":"all"});
-		}
-	});
-}
 
 Force.prototype.dragstart = function(d) {
   	d3.select(this).classed("fixed", d.fixed = true);
 }
+
+
+Force.prototype.neighboring = function (a, b) {
+    return this.linkedByIndex[a.index + "," + b.index];
+}
+
+Force.prototype.connectedNodes = function (item) {
+
+	var that = this;
+
+
+    if (that.toggle == 0) {
+        //Reduce the opacity of all but the neighbouring nodes
+        d = d3.select(item).node().__data__;
+        that.node.style("opacity", function (o) {
+            return that.neighboring(d, o) | that.neighboring(o, d) ? 1 : 0.07;
+        });
+        that.link.style("opacity", function (o) {
+            return d.index==o.source.index | d.index==o.target.index ? 1 : 0.07;
+        });
+
+        that.link.classed("selected", function(o) {
+        	return d.index==o.source.index | d.index==o.target.index;
+        });
+
+        //Reduce the op
+        that.toggle = 1;
+
+    } else {
+        //Put them back to opacity=1
+        that.node.style("opacity", 1);
+        that.link.style("opacity", 1);
+
+        that.link.classed("selected", false);
+        that.toggle = 0;
+    }
+}
+
 
 
