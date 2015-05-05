@@ -133,7 +133,7 @@ Cex.prototype.onSelectionChange = function (names){
    else {
         this.axis_label = first_combination;
         d3.select('.y.axis').select('text').text(this.axis_label);
-        
+
         this.displayData = this.data[first_combination]["recenttrades"];
    }   
 
