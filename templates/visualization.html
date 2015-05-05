@@ -4,7 +4,7 @@
   <img src="{{url_for('static', filename='img/714.GIF')}}" style="width:200px;height:200;" class="loader centered">
 
   <div class="row">
-    <div id="node-container" class="col s6" style="margin-top:50px;">
+    <div id="node-container" class="col s6" style="margin-top:50px;overflow:hiddden" >
 
     </div>
     <div class="col s6" style="margin-top:50px;">
@@ -12,7 +12,7 @@
       <div class="row" style="z-index:100;position:relative;" id="image-container">
 
         <div class="col s3">
-          <div class="card">
+          <div class="card" style="padding-bottom:30px;height: 255px">
             <div class="card-image waves-effect waves-block waves-light">
               <img id="first-image" src="{{url_for('static', filename='img/coins/BTC.png')}}" alt="img/coins/COIN.png">
             </div>
@@ -24,7 +24,7 @@
         </div>  
 
         <div class="col s3">
-          <div class="card">
+          <div class="card" style="padding-bottom:30px; height: 255px" >
             <div class="card-image waves-effect waves-block waves-light">
               <img id="second-image" src="{{url_for('static', filename='img/coins/LTC.png')}}" alt="img/coins/COIN.png">
             </div>
@@ -36,16 +36,17 @@
         </div>
 
         <div class="col s6">
-          <div class="card amber accent-4" style="padding-bottom:40px;">
+          <div class="card amber accent-4" style="padding-bottom:4px;overflow:scroll;overflow-x:hidden;height: 255px">
             <div class="card-content white-text">
-              <span class="card-title"><strog>Recent Trade Information*</strong></span>
-              <p><strong>Average Trading Price</strong></p>
+              <span class="card-title" style = "font-size:20px"><strog>Recent Trade Information*</strong></span>
+              <p><strong>Average Trading Price: </strong></p>
+              <p id="average-price" style="font-size:18px;width:80%;"></p>
               <br>
-              <p id="average-price" style="font-size:23px;width:80%;"></p>
+              <p><strong>Total Trading Volume: </strong></p>
+              <p id="total-volume" style="font-size:18px;width:80%;"></p>
               <br>
-              <p><strong>Total Trading Volume </strong></p>
-              <br>
-              <p id="total-volume" style="font-size:23px;width:80%;"></p>
+              <p><strong style="font-size:10px;width:80%;">*based off of the past 200 trades </strong></p>
+              <p id="footer" style="font-size:30px;width:80%;"></p>
             </div>
             
           </div>
@@ -167,8 +168,6 @@
 
           nodeData = _nodeData;
           marketData = _marketData;
-
-
 
           initVis();
         }

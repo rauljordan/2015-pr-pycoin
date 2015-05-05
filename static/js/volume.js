@@ -9,7 +9,8 @@ Volume = function(_parentElement, _marketData, _eventHandler){
 
     this.margin = {top: 0, right: 0, bottom: 140, left: 100},
     this.width = parseInt(style.getPropertyValue('width')) - this.margin.left - this.margin.right;
-    this.height = 300 - this.margin.top - this.margin.bottom;
+    this.height = 350 - this.margin.top - this.margin.bottom;
+
 
     var that = this;
   
@@ -17,7 +18,7 @@ Volume = function(_parentElement, _marketData, _eventHandler){
       return that.displayData[i]["time"];
     });
 
-    this.axis_label = "BTC/LTC";
+    this.axis_label = "BTC and LTC";
 
     this.initVis();
 }
@@ -57,7 +58,6 @@ Volume.prototype.initVis = function(){
     this.svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + this.height + ")");
-
     this.svg.append("g")
       .attr("class", "y axis")
       .attr("transform", "translate(0,0)")
@@ -66,7 +66,7 @@ Volume.prototype.initVis = function(){
         .attr("y", 6)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text("Trade Volume " + this.axis_label);
+        .text("No. of trades per day between " + this.axis_label);
         
     // call the update method
     this.updateVis();
@@ -135,8 +135,6 @@ Volume.prototype.updateVis = function(){
       .attr("height", function(d, i) {
           return that.height - that.y(d.quantity);
       });
-
-
 }
 
 
@@ -153,14 +151,14 @@ Volume.prototype.onSelectionChange = function (names){
 
    if (_.isUndefined(this.data[first_combination])) {
         this.displayData = this.data[second_combination]["recenttrades"];
-        this.axis_label = second_combination;
+        this.axis_label = 'No. of trades per day between ' + names.first + ' and ' + names.second;
         d3.select('.y.axis').select('text').text(this.axis_label);
 
         var avg = d3.mean(this.displayData, function(d) { return d.price });
         $('#average-price').text('$' + avg);
 
-        var volume = d3.sum(this.displayData, function(d) { return d.price });
-        $('#total-volume').text('$' + volume);
+        var volume = d3.sum(this.displayData, function(d) { return d.volume });
+        $('#total-volume').text(volume + ' buys and sells');
 
         // Changes the images
         $("#first-image").attr('src', "img/coins/" + names.second + ".png");
@@ -173,15 +171,15 @@ Volume.prototype.onSelectionChange = function (names){
    }
    else {
         this.displayData = this.data[first_combination]["recenttrades"];
-        this.axis_label = first_combination;
+        this.axis_label = 'No. of trades per day between ' + names.first + ' and ' + names.second;
         d3.select('.y.axis').select('text').text(this.axis_label);
 
         var avg = d3.mean(this.displayData, function(d) { return d.price });
         $('#average-price').text('$' + parseFloat(avg).toFixed(9));
 
-        var volume = d3.sum(this.displayData, function(d) { return d.price });
+        var volume = d3.sum(this.displayData, function(d) { return d.volume });
 
-        $('#total-volume').text('$' + volume);
+        $('#total-volume').text(volume + ' buys and sells');
 
         // Changes the images
         $("#first-image").attr('src', "img/coins/" + names.first + ".png");
@@ -189,7 +187,6 @@ Volume.prototype.onSelectionChange = function (names){
 
         $("#second-image").attr('src', "img/coins/" + names.second + ".png");
         $("#second-name").text(names.second);
-
    }   
    
 
