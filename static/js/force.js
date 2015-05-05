@@ -224,7 +224,6 @@ Force.prototype.makeForce = function(theGraph) {
 			}
 		});
 
-		d3.selectAll('.link').style({"opacity":"0.2", "pointer-events":"none"});
 
 	});
 };
