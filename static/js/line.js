@@ -7,7 +7,7 @@
  * @param _eventHandler -- the Eventhandling Object to emit data to (see Task 4)
  * @constructor
  */
-Cex = function(_parentElement, _data, _eventHandler){
+Line = function(_parentElement, _data, _eventHandler){
     this.parentElement = _parentElement;
     this.data = _data;
     this.eventHandler = _eventHandler;
@@ -35,7 +35,7 @@ Cex = function(_parentElement, _data, _eventHandler){
 /**
  * Method that sets up the SVG and the variables
  */
-Cex.prototype.initVis = function(){
+Line.prototype.initVis = function(){
 
     var that = this; // read about the this
 
@@ -96,7 +96,7 @@ Cex.prototype.initVis = function(){
  * the drawing function - should use the D3 selection, enter, exit
  * @param _options -- only needed if different kinds of updates are needed
  */
-Cex.prototype.updateVis = function(){  
+Line.prototype.updateVis = function(){  
 
     d3.select("path.line").remove();
 
@@ -119,7 +119,7 @@ Cex.prototype.updateVis = function(){
  * be defined here.
  * @param selection
  */
-Cex.prototype.onSelectionChange = function (names){
+Line.prototype.onSelectionChange = function (names){
 
    // this.axis_label = name;
    // d3.select('.y.axis').select('text').text(this.axis_label);

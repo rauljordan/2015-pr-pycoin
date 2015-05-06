@@ -1,6 +1,18 @@
 Pycoin
 ======
-** NOTE: OUR DATA TAKES A WHILE TO LOAD SO IF YOU START THE VISUALIZATION AND SEE NOTHING JUST WAIT FOR A LITTE **
+
+Welcome to Pycoin, An Interactive Visualization of Cryptocurrency Markets & Trades.
+
+We are focusing on creating a force layout of all cryptocurrencies that are publicly traded on the internet as a way of visualizing trade and price data and explore connections that are not obvious between these coins from raw data. 
+
+We have chosen Flask to be our backend framework of choice because we have written our scraping programs using Python to interact with external APIs from crypsty.com. 
+
+Our project is hosted using heroku at 
+
+http://pycoin.herokuapp.com
+
+Structure of Our Data
+=====================
 
 All Our Data is Inside /static/data/
 
@@ -16,8 +28,28 @@ All of our data has been wrangled and it is inside of /static/data/markets.json 
 	}
 }
 
-Where we see all the recent trades between BTC and DOGEcoin. We have successfully put this together and our layout works as an initial iteration, but it has some bugs that we are fixing as we move forward.
 
 For the force layout, the node data is inside of /static/data/nodes.json where each item is the name of a node and all the nodes associated to it, which will be the links in our layout. 
 
-Read the process book inside of /process_book/ for more information on how this project has been evolving
+Project Structure
+=================
+
+For our HTML, flask structures all of this inside of a templates/ folder which contains our core layout. The whle website is wrapped around the layout.html file which uses flask templating to dynamically render two different files. When a user goes to the main page, it will render home.html, and when a user goes to /visualization, it will render visualization.html, which contains the core engine that runs our js code. Inside of this file, the view objects are initialized and the data is loaded and passed into them.
+
+Now, for our JS, we have 3 files that contain the logic of our visualization
+
+* force.js
+* line.js
+* volume.js
+
+All of them are Objects that are initialized following the same format as HW3 with our Vis Objects. Here, we bind an event handler to line and volume to change the data they display whenever something changes in our force layout. Explore the comments on each file to see how all of these are implemented in detail.
+
+External Libraries
+==================
+
+We are using jquery, underscore.js, intro.js, d3.js as external javascript libraries located within the vendor/ folder
+
+We also use the materialize.css framework as the basis of our design and layout. All of the cryptocurrency images are located within the static/img/ folder.
+
+
+
