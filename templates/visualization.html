@@ -154,7 +154,7 @@
         var MyEventHandler = {};
         var force = new Force(d3.select("#node-container"), nodeData, MyEventHandler);
         var volume = new Volume(d3.select("#barchart-container"), marketData, MyEventHandler);
-        var price = new Cex(d3.select("#barchart-container2"), marketData, MyEventHandler);
+        var price = new Line(d3.select("#barchart-container2"), marketData, MyEventHandler);
 
         $(MyEventHandler).bind("selectionChanged", function(event, names){
             volume.onSelectionChange(names);
